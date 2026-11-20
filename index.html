@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Llantas Lentas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Work+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: banda de "carretera" arriba, catálogo en rejilla, carrito como cajón lateral */
+:root{
+  --bg:#eef0e9;          /* gris claro con sesgo verde salvia */
+  --surface:#ffffff;
+  --fg:#1f2421;          /* caucho */
+  --muted:#5d665f;
+  --line:#d3d8cf;
+  --accent:#d9572b;      /* naranja de cono */
+  --accent-fg:#ffffff;
+  --road:#2b302c;
+  --stripe:#f2c14e;
+  --display:"Bowlby One","Arial Black",Impact,sans-serif;
+  --body:"Work Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#171a18;--surface:#212522;--fg:#ecefe8;--muted:#a3aca4;--line:#343a35;
+  --accent:#ef7446;--accent-fg:#1a0f0a;--road:#0f1110;--stripe:#e8b73f;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171a18;--surface:#212522;--fg:#ecefe8;--muted:#a3aca4;--line:#343a35;
+  --accent:#ef7446;--accent-fg:#1a0f0a;--road:#0f1110;--stripe:#e8b73f;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--road)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.02;text-wrap:balance;margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--mono);font-size:.8rem;letter-spacing:.04em}
+
+/* Barra superior */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--road);color:#ecefe8}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{font-family:var(--display);font-size:1.25rem;letter-spacing:.02em;color:#ecefe8;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo svg{flex:none}
+.top nav{display:flex;gap:20px;align-items:center}
+.top nav a{color:#c9d0c8;text-decoration:none;font-size:.95rem}
+.top nav a:hover{color:#fff}
+.cart-btn{display:flex;align-items:center;gap:8px;background:var(--stripe);color:#1f2421;border:0;border-radius:999px;padding:8px 14px;font-weight:600}
+.cart-btn .n{font-family:var(--mono);background:#1f2421;color:var(--stripe);border-radius:999px;min-width:22px;padding:0 6px;text-align:center}
+@media (max-width:640px){.top nav .hide-sm{display:none}}
+
+/* Hero = carretera */
+.hero{background:var(--road);color:#ecefe8;position:relative;overflow:hidden}
+.hero .wrap{padding-block:56px 72px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);letter-spacing:-.01em}
+.hero h1 span{color:var(--stripe)}
+.hero p{max-width:46ch;color:#c9d0c8;font-size:1.1rem;margin:20px 0 28px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font-weight:600;text-decoration:none;border:2px solid transparent}
+.btn-primary{background:var(--accent);color:var(--accent-fg)}
+.btn-ghost{border-color:#5d665f;color:#ecefe8}
+.btn-ghost:hover{border-color:#ecefe8}
+.dash{position:absolute;left:0;right:0;bottom:22px;height:6px;background:repeating-linear-gradient(90deg,var(--stripe) 0 48px,transparent 48px 96px);opacity:.9}
+@media (prefers-reduced-motion:no-preference){.dash{animation:roll 6s linear infinite}}
+@keyframes roll{to{background-position:-96px 0}}
+.tire{width:100%;max-width:320px;justify-self:center;aspect-ratio:1}
+@media (prefers-reduced-motion:no-preference){.tire{animation:spin 18s linear infinite}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spec{margin-top:28px;display:flex;gap:18px;flex-wrap:wrap;color:#a3aca4}
+.spec b{color:#ecefe8;font-weight:500}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.tire{max-width:200px;order:-1;justify-self:start}}
+
+/* Catálogo */
+section{padding-block:64px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(2rem,5vw,3rem)}
+.sec-head p{color:var(--muted);margin:8px 0 0;max-width:52ch}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:transparent;color:var(--fg);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card .img{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;position:relative}
+.card .img svg{width:46%;height:auto}
+.tag{position:absolute;top:12px;left:12px;background:var(--surface);color:var(--fg);border-radius:6px;padding:2px 8px}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-family:var(--body);font-weight:600;font-size:1.05rem;line-height:1.3}
+.card .desc{color:var(--muted);font-size:.92rem;margin:0;flex:1}
+.card .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px}
+.price{font-family:var(--mono);font-size:1.1rem;font-weight:500;font-variant-numeric:tabular-nums}
+.add{background:var(--accent);color:var(--accent-fg);border:0;border-radius:999px;padding:8px 16px;font-weight:600}
+.add:active{transform:scale(.97)}
+.sizes{display:flex;gap:6px;flex-wrap:wrap}
+.sizes button{border:1.5px solid var(--line);background:transparent;color:var(--fg);border-radius:6px;padding:2px 8px;font-family:var(--mono);font-size:.78rem}
+.sizes button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+
+/* Nosotros */
+.about{background:var(--surface);border-block:1px solid var(--line)}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about h2{font-size:clamp(2rem,5vw,3rem)}
+.about p{max-width:60ch;margin:0 0 14px}
+.rules{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.rules li{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:baseline;border-bottom:1px dashed var(--line);padding-bottom:14px}
+.rules .k{font-family:var(--mono);color:var(--accent);font-weight:500}
+@media (max-width:760px){.about .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* Contacto / pie */
+.contact .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.contact h3{font-family:var(--body);font-weight:600;font-size:1rem;margin-bottom:6px}
+.contact p{margin:0;color:var(--muted)}
+footer{background:var(--road);color:#a3aca4}
+footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* Carrito */
+.scrim{position:fixed;inset:0;background:rgba(10,12,11,.5);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:21;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top,0px) + 20px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 20px) 20px;box-shadow:-10px 0 40px rgba(0,0,0,.25)}
+.drawer header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.drawer h2{font-size:1.8rem}
+.x{background:transparent;border:1.5px solid var(--line);color:var(--fg);border-radius:999px;width:36px;height:36px}
+.items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:12px;min-height:0}
+.item{display:grid;grid-template-columns:1fr auto;gap:4px 12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px}
+.item .t{font-weight:600}
+.item .m{color:var(--muted);font-size:.85rem}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--line);background:transparent;color:var(--fg)}
+.qty span{font-family:var(--mono);min-width:20px;text-align:center}
+.empty{color:var(--muted);text-align:center;padding:40px 10px}
+.totals{border-top:2px dashed var(--line);padding-top:14px;margin-top:14px;display:grid;gap:10px}
+.totals .line{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.totals .grand{font-family:var(--mono);font-size:1.2rem;font-weight:500}
+.drawer label{font-size:.85rem;color:var(--muted)}
+.drawer input{width:100%;padding:10px 12px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);font:inherit}
+.btn-block{justify-content:center;width:100%;border:0}
+.order-text{width:100%;min-height:110px;font-family:var(--mono);font-size:.78rem;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);padding:10px;resize:vertical}
+.note{font-size:.8rem;color:var(--muted);margin:0}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:999px;z-index:30;font-weight:500}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Llantas Lentas, inicio">
+      <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#ecefe8"/><circle cx="20" cy="20" r="12" fill="#2b302c"/><circle cx="20" cy="20" r="5" fill="#f2c14e"/></svg>
+      Llantas Lentas
+    </a>
+    <nav>
+      <a class="hide-sm" href="#tienda">Tienda</a>
+      <a class="hide-sm" href="#nosotros">Nosotros</a>
+      <a class="hide-sm" href="#contacto">Contacto</a>
+      <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrito">Carrito <span class="n" id="cartCount">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <p class="mono" style="color:var(--stripe);margin:0 0 14px">ÍNDICE DE VELOCIDAD: L · LENTO A PROPÓSITO</p>
+      <h1>Sin prisa,<br><span>con estilo.</span></h1>
+      <p>Ropa y accesorios para quienes disfrutan el camino más que la llegada. Hechos en pequeños lotes, enviados a todo el país.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#tienda">Ver la tienda</a>
+        <a class="btn btn-ghost" href="#nosotros">Conoce la marca</a>
+      </div>
+      <div class="spec mono">
+        <span>MEDIDA <b>205/55 R16</b></span>
+        <span>ENVÍO <b>3–5 días</b></span>
+        <span>CAMBIOS <b>30 días</b></span>
+      </div>
+    </div>
+    <svg class="tire" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="96" fill="#1a1d1b"/>
+      <g fill="#3a403b" id="tread"></g>
+      <circle cx="100" cy="100" r="70" fill="#2f3430"/>
+      <circle cx="100" cy="100" r="52" fill="#c9d0c8"/>
+      <g fill="#2b302c">
+        <circle cx="100" cy="70" r="9"/><circle cx="128.5" cy="90.7" r="9"/><circle cx="117.6" cy="124.3" r="9"/><circle cx="82.4" cy="124.3" r="9"/><circle cx="71.5" cy="90.7" r="9"/>
+      </g>
+      <circle cx="100" cy="100" r="12" fill="#f2c14e"/>
+      <text x="100" y="40" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="#8a948b" letter-spacing="2">LLANTAS LENTAS</text>
+    </svg>
+  </div>
+  <div class="dash" aria-hidden="true"></div>
+</div>
+
+<main>
+  <section id="tienda">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>La tienda</h2>
+          <p>Productos de ejemplo. Cambia nombres, precios y fotos en la lista <code>PRODUCTOS</code> dentro del código.</p>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="about" id="nosotros">
+    <div class="wrap">
+      <div>
+        <h2>Bajarle dos rayitas</h2>
+        <p style="margin-top:18px">Llantas Lentas nació de los paseos de domingo: ventanas abajo, música baja y ninguna prisa. Hacemos cosas para la gente que maneja, rueda o camina a su ritmo.</p>
+        <p>Cada prenda se diseña y se imprime en lotes cortos, así que cuando algo se acaba, puede que no regrese.</p>
+      </div>
+      <ul class="rules">
+        <li><span class="k">R1</span><span>Calidad primero. Algodón pesado y tintas que aguantan lavadas.</span></li>
+        <li><span class="k">R2</span><span>Lotes pequeños para no producir de más.</span></li>
+        <li><span class="k">R3</span><span>Atención directa por WhatsApp, sin bots.</span></li>
+        <li><span class="k">R4</span><span>Si no te queda, lo cambiamos en 30 días.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <div><h3>WhatsApp</h3><p class="mono">+52 55 0000 0000</p></div>
+      <div><h3>Correo</h3><p class="mono">hola@llantaslentas.com</p></div>
+      <div><h3>Redes</h3><p class="mono">@llantaslentas</p></div>
+      <div><h3>Pagos</h3><p>Transferencia, tarjeta o efectivo en punto de entrega.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Llantas Lentas</span>
+    <span class="mono">HECHO SIN PRISA</span>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Carrito de compras">
+  <header>
+    <h2>Tu carrito</h2>
+    <button class="x" id="closeCart" type="button" aria-label="Cerrar carrito">✕</button>
+  </header>
+  <div class="items" id="items"></div>
+  <div class="totals" id="totals" hidden>
+    <div class="line"><span>Subtotal</span><span class="mono" id="subtotal"></span></div>
+    <div class="line"><span>Envío</span><span class="mono" id="shipping"></span></div>
+    <div class="line grand"><span>Total</span><span id="total"></span></div>
+    <div><label for="custName">Tu nombre</label><input id="custName" autocomplete="name" placeholder="Ej. Ana López"></div>
+    <a class="btn btn-primary btn-block" id="waBtn" href="#" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
+    <textarea class="order-text" id="orderText" readonly aria-label="Texto del pedido"></textarea>
+    <button class="btn btn-ghost btn-block" id="copyBtn" type="button" style="color:var(--fg);border-color:var(--line)">Copiar pedido</button>
+    <p class="note">Si el botón de WhatsApp no abre, copia el pedido y mándalo al +52 55 0000 0000.</p>
+  </div>
+</aside>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ======= EDITA AQUÍ TUS DATOS ======= */
+const TIENDA = {
+  whatsapp: "525500000000",     // número con lada, sin + ni espacios
+  moneda: "MXN",
+  envioGratisDesde: 999,
+  costoEnvio: 120
+};
+const PRODUCTOS = [
+  {id:"p1", nombre:"Playera Índice L", cat:"Ropa", precio:349, color:"#f2c14e", icono:"tee", tallas:["CH","M","G","XG"], etiqueta:"Nuevo",
+   desc:"Algodón 100% peso pesado con la llanta lenta al frente."},
+  {id:"p2", nombre:"Sudadera Domingo", cat:"Ropa", precio:749, color:"#9fb8a6", icono:"hoodie", tallas:["CH","M","G","XG"],
+   desc:"Felpa suave, capucha doble y bolsa canguro."},
+  {id:"p3", nombre:"Gorra Carril Lento", cat:"Accesorios", precio:299, color:"#d9572b", icono:"cap",
+   desc:"Gorra de cinco paneles con broche ajustable."},
+  {id:"p4", nombre:"Pack de stickers", cat:"Accesorios", precio:89, color:"#c7cfe0", icono:"sticker", etiqueta:"Favorito",
+   desc:"Seis calcomanías de vinil resistentes al agua y al sol."},
+  {id:"p5", nombre:"Llavero Rin", cat:"Accesorios", precio:129, color:"#e3c9a8", icono:"key",
+   desc:"Llavero metálico en forma de rin de cinco birlos."},
+  {id:"p6", nombre:"Taza Sin Prisa", cat:"Hogar", precio:219, color:"#b7d3d9", icono:"mug",
+   desc:"Taza de cerámica de 350 ml para el café sin prisa."}
+];
+/* ==================================== */
+
+const ICONOS = {
+  tee:'<svg viewBox="0 0 100 100"><path d="M30 18 L42 12 Q50 20 58 12 L70 18 L88 32 L78 46 L70 40 L70 88 L30 88 L30 40 L22 46 L12 32 Z" fill="#1f2421"/><circle cx="50" cy="52" r="11" fill="none" stroke="#f4f4ef" stroke-width="5"/></svg>',
+  hoodie:'<svg viewBox="0 0 100 100"><path d="M36 14 Q50 4 64 14 L70 22 L88 36 L80 76 L70 72 L70 90 L30 90 L30 72 L20 76 L12 36 L30 22 Z" fill="#1f2421"/><path d="M38 62 H62 V76 H38 Z" fill="#3a403b"/><path d="M40 18 Q50 30 60 18" fill="none" stroke="#f4f4ef" stroke-width="3"/></svg>',
+  cap:'<svg viewBox="0 0 100 100"><path d="M18 62 Q18 26 50 24 Q80 26 80 58 Z" fill="#1f2421"/><path d="M58 58 Q84 56 94 66 Q78 70 56 66 Z" fill="#3a403b"/><circle cx="48" cy="46" r="6" fill="#f2c14e"/></svg>',
+  sticker:'<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="36" fill="#1f2421"/><circle cx="50" cy="50" r="22" fill="#f4f4ef"/><circle cx="50" cy="50" r="8" fill="#d9572b"/><path d="M74 78 L86 66 L86 86 Z" fill="#f4f4ef"/></svg>',
+  key:'<svg viewBox="0 0 100 100"><circle cx="50" cy="20" r="8" fill="none" stroke="#1f2421" stroke-width="4"/><circle cx="50" cy="60" r="28" fill="#1f2421"/><circle cx="50" cy="60" r="10" fill="#f4f4ef"/><g fill="#f4f4ef"><circle cx="50" cy="42" r="4"/><circle cx="67" cy="54" r="4"/><circle cx="61" cy="74" r="4"/><circle cx="39" cy="74" r="4"/><circle cx="33" cy="54" r="4"/></g></svg>',
+  mug:'<svg viewBox="0 0 100 100"><rect x="20" y="26" width="48" height="58" rx="6" fill="#1f2421"/><path d="M68 40 Q86 40 86 54 Q86 68 68 68" fill="none" stroke="#1f2421" stroke-width="7"/><path d="M34 14 Q30 20 34 24 M46 12 Q42 18 46 24" stroke="#1f2421" stroke-width="3" fill="none"/><text x="44" y="60" text-anchor="middle" font-family="Bowlby One, sans-serif" font-size="16" fill="#f2c14e">LL</text></svg>'
+};
+
+const $ = s => document.querySelector(s);
+const fmt = n => new Intl.NumberFormat("es-MX",{style:"currency",currency:TIENDA.moneda,maximumFractionDigits:0}).format(n);
+
+// Dibujo de la banda de rodamiento
+(function(){const g=$("#tread");let h="";for(let i=0;i<36;i++){h+=`<rect x="96" y="6" width="8" height="18" rx="2" transform="rotate(${i*10} 100 100)"/>`}g.innerHTML=h})();
+
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem("ll-cart")||"[]"); } catch(e){ cart = []; }
+const save = () => { try { localStorage.setItem("ll-cart", JSON.stringify(cart)); } catch(e){} };
+const tallaSel = {};
+let filtro = "Todo";
+
+function renderFilters(){
+  const cats = ["Todo", ...new Set(PRODUCTOS.map(p=>p.cat))];
+  $("#filters").innerHTML = cats.map(c=>`<button type="button" class="chip" aria-pressed="${c===filtro}" data-cat="${c}">${c}</button>`).join("");
+}
+function renderGrid(){
+  const list = PRODUCTOS.filter(p=>filtro==="Todo"||p.cat===filtro);
+  $("#grid").innerHTML = list.map(p=>{
+    const img = p.imagen ? `<img src="${p.imagen}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover">` : ICONOS[p.icono]||"";
+    const tallas = p.tallas ? `<div class="sizes" role="group" aria-label="Talla">${p.tallas.map(t=>`<button type="button" data-size="${t}" data-id="${p.id}" aria-pressed="${(tallaSel[p.id]||p.tallas[1]||p.tallas[0])===t}">${t}</button>`).join("")}</div>` : "";
+    return `<article class="card">
+      <div class="img" style="background:${p.color}">${p.etiqueta?`<span class="tag mono">${p.etiqueta}</span>`:""}${img}</div>
+      <div class="body">
+        <span class="mono" style="color:var(--muted)">${p.cat.toUpperCase()}</span>
+        <h3>${p.nombre}</h3>
+        <p class="desc">${p.desc}</p>
+        ${tallas}
+        <div class="row"><span class="price">${fmt(p.precio)}</span><button type="button" class="add" data-add="${p.id}">Agregar</button></div>
+      </div></article>`;
+  }).join("");
+}
+function addToCart(id){
+  const p = PRODUCTOS.find(x=>x.id===id);
+  const talla = p.tallas ? (tallaSel[id]||p.tallas[1]||p.tallas[0]) : "";
+  const key = id+"|"+talla;
+  const ex = cart.find(i=>i.key===key);
+  ex ? ex.qty++ : cart.push({key,id,talla,qty:1});
+  save(); renderCart(); toast(`${p.nombre}${talla?" ("+talla+")":""} agregado`);
+}
+function renderCart(){
+  const count = cart.reduce((a,i)=>a+i.qty,0);
+  $("#cartCount").textContent = count;
+  if(!cart.length){ $("#items").innerHTML = `<div class="empty">Tu carrito está vacío.<br>Agrega algo de la tienda para empezar.</div>`; $("#totals").hidden = true; return; }
+  $("#items").innerHTML = cart.map(i=>{const p=PRODUCTOS.find(x=>x.id===i.id); return `<div class="item">
+    <span class="t">${p.nombre}</span><span class="mono">${fmt(p.precio*i.qty)}</span>
+    <span class="m">${i.talla?"Talla "+i.talla+" · ":""}${fmt(p.precio)} c/u</span>
+    <span class="qty"><button type="button" data-dec="${i.key}" aria-label="Quitar uno">−</button><span>${i.qty}</span><button type="button" data-inc="${i.key}" aria-label="Agregar uno">+</button></span>
+  </div>`}).join("");
+  const sub = cart.reduce((a,i)=>a+PRODUCTOS.find(x=>x.id===i.id).precio*i.qty,0);
+  const env = sub>=TIENDA.envioGratisDesde?0:TIENDA.costoEnvio;
+  $("#subtotal").textContent = fmt(sub);
+  $("#shipping").textContent = env?fmt(env):"Gratis";
+  $("#total").textContent = fmt(sub+env);
+  $("#totals").hidden = false;
+  updateOrder(sub,env);
+}
+function updateOrder(sub,env){
+  if(sub===undefined){ sub = cart.reduce((a,i)=>a+PRODUCTOS.find(x=>x.id===i.id).precio*i.qty,0); env = sub>=TIENDA.envioGratisDesde?0:TIENDA.costoEnvio; }
+  const nombre = $("#custName").value.trim();
+  const lines = cart.map(i=>{const p=PRODUCTOS.find(x=>x.id===i.id);return `• ${i.qty} x ${p.nombre}${i.talla?" ("+i.talla+")":""} – ${fmt(p.precio*i.qty)}`});
+  const txt = `Hola Llantas Lentas, quiero hacer un pedido${nombre?" (soy "+nombre+")":""}:\n${lines.join("\n")}\nEnvío: ${env?fmt(env):"Gratis"}\nTotal: ${fmt(sub+env)}`;
+  $("#orderText").value = txt;
+  $("#waBtn").href = `https://wa.me/${TIENDA.whatsapp}?text=${encodeURIComponent(txt)}`;
+}
+function openCart(o){ $("#drawer").hidden = !o; $("#scrim").hidden = !o; if(o) $("#closeCart").focus(); }
+let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.hidden=false; clearTimeout(tt); tt=setTimeout(()=>t.hidden=true,1800); }
+
+document.addEventListener("click", e=>{
+  const t = e.target.closest("button"); if(!t) return;
+  if(t.dataset.cat){ filtro=t.dataset.cat; renderFilters(); renderGrid(); }
+  else if(t.dataset.size){ tallaSel[t.dataset.id]=t.dataset.size; renderGrid(); }
+  else if(t.dataset.add){ addToCart(t.dataset.add); }
+  else if(t.dataset.inc){ cart.find(i=>i.key===t.dataset.inc).qty++; save(); renderCart(); }
+  else if(t.dataset.dec){ const i=cart.find(i=>i.key===t.dataset.dec); i.qty--; if(i.qty<=0) cart=cart.filter(x=>x!==i); save(); renderCart(); }
+});
+$("#openCart").onclick = ()=>openCart(true);
+$("#closeCart").onclick = ()=>openCart(false);
+$("#scrim").onclick = ()=>openCart(false);
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") openCart(false); });
+$("#custName").addEventListener("input", ()=>updateOrder());
+$("#copyBtn").onclick = ()=>{
+  const ta=$("#orderText");
+  navigator.clipboard.writeText(ta.value).then(()=>toast("Pedido copiado")).catch(()=>{ ta.focus(); ta.select(); toast("Selecciona y copia el texto"); });
+};
+
+renderFilters(); renderGrid(); renderCart();
+</script>
+
+</body>
+</html>
