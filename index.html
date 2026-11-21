@@ -103,13 +103,34 @@ section{padding-block:72px}
 .filters{display:flex;gap:8px;flex-wrap:wrap}
 .chip{border:2px solid var(--line);background:transparent;color:var(--fg);padding:6px 14px;font-family:var(--mono);font-size:.8rem;text-transform:uppercase}
 .chip[aria-pressed="true"]{background:var(--black);color:var(--white);border-color:var(--black)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,340px));gap:26px}
+@media (max-width:620px){.grid{grid-template-columns:1fr}}
 .card{background:var(--white);color:var(--black);border:3px solid var(--black);box-shadow:6px 6px 0 var(--black);display:flex;flex-direction:column;transition:transform .15s, box-shadow .15s}
 .card:nth-child(3n+1){--pop:var(--pink)} .card:nth-child(3n+2){--pop:var(--black)} .card:nth-child(3n+3){--pop:var(--paper)}
 .card:hover{transform:rotate(-1deg) translateY(-3px);box-shadow:6px 6px 0 var(--pink)}
 .card .img{aspect-ratio:1;max-width:100%;display:grid;place-items:center;position:relative;background:var(--pop);border-bottom:3px solid var(--black);overflow:hidden}
 .card .img svg{width:70%;height:auto}
 .card .img img{width:100%;height:100%;object-fit:cover}
+.thumbs{display:flex;gap:6px;padding:10px 16px 0}
+.thumbs button{width:48px;height:48px;padding:0;border:2px solid #d6d6d6;background:none;overflow:hidden}
+.thumbs button[aria-pressed="true"]{border-color:var(--black);box-shadow:2px 2px 0 var(--pink)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.soon-card{background:var(--black);color:var(--white);border:3px dashed var(--pink);display:flex;flex-direction:column;justify-content:center;gap:14px;padding:28px;min-height:280px}
+.soon-card h3{font-size:1.5rem;color:var(--white);text-shadow:3px 3px 0 var(--pink)}
+.soon-card p{color:#b9b9b9}
+.soon-card a{align-self:flex-start;color:var(--pink-soft);font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+/* Galería */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.gallery figure{margin:0;border:4px solid var(--white);box-shadow:8px 8px 0 var(--pink);overflow:hidden;aspect-ratio:4/5;max-width:100%}
+.gallery figure:nth-child(odd){transform:rotate(-1.5deg)} .gallery figure:nth-child(even){transform:rotate(1.5deg) translateY(14px)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gallery figure:hover img{transform:scale(1.05)}
+@media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.pista{background:var(--pink);color:var(--white);border-block:3px solid var(--black)}
+.pista .sec-head h2{text-shadow:4px 4px 0 var(--black)}
+.pista .sec-head p{color:#fbe3ef}
+.pista .gallery figure{box-shadow:8px 8px 0 var(--black)}
+.pista .wrap{padding-bottom:14px}
 .sticker{position:absolute;top:12px;left:-6px;background:var(--white);color:var(--black);border:2px solid var(--black);padding:3px 12px;font-family:var(--display);font-size:.78rem;transform:rotate(-4deg)}
 .sample{position:absolute;bottom:10px;right:10px;background:var(--white);color:var(--black);border:1.5px solid var(--black);padding:2px 8px}
 .card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -253,11 +274,28 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
       <div class="sec-head">
         <div>
           <h2>PLAYERAS</h2>
-          <p>Diseños urbanos, de grafiti y caricatura retro, pensados para rodar y para el día a día.</p>
+          <p>Nuestro primer diseño ya salió. Ilustraciones urbanas, de grafiti y caricatura retro, para rodar y para el día a día.</p>
         </div>
         <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
       </div>
       <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="pista" id="pista">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>EN LA PISTA</h2>
+          <p>Así se ven en el bosque: probadas en la tierra, en los saltos y en las caídas.</p>
+        </div>
+      </div>
+      <div class="gallery">
+        <figure><img src="img/rodada-1.webp" alt="Ciclista con casco y la playera de Llantas Lentas señalando a la cámara en el bosque" loading="lazy" width="800" height="1000"></figure>
+        <figure><img src="img/rodada-2.webp" alt="Ciclista saltando con su bicicleta de montaña entre los árboles" loading="lazy" width="800" height="1000"></figure>
+        <figure><img src="img/rodada-3.webp" alt="Ciclista de espaldas junto a un árbol, con el gallo en la espalda de la playera" loading="lazy" width="800" height="1000"></figure>
+        <figure><img src="img/rodada-4.webp" alt="Collage de la playera del gallo y un ciclista empujando su bici en la tierra" loading="lazy" width="800" height="1000"></figure>
+      </div>
     </div>
   </section>
 
@@ -402,15 +440,12 @@ const TIENDA = {
    imagen:    "img/playera1.jpg"  -> tu foto (si no, se ve un dibujo de ejemplo)
    linkPago:  "https://mpago.la/xxxx" -> link de pago de Mercado Pago o Stripe; muestra el botón "COMPRAR YA" */
 const PRODUCTOS = [
-  {id:"p1", nombre:"Playera Llanta Lenta Original", cat:"Playeras", precio:399, color:"#0d0d0d", tallas:["CH","M","G","XG"], etiqueta:"NUEVO",
-   desc:"El logo de la casa. Algodón suave, corte unisex.", imagen:"", linkPago:""},
-  {id:"p2", nombre:"Playera Bajada Rosa", cat:"Playeras", precio:399, color:"#ffffff", tallas:["CH","M","G","XG"],
-   desc:"Ilustración ochentera de bajada en la montaña.", imagen:"", linkPago:""},
-  {id:"p3", nombre:"Playera Grafiti Trail", cat:"Playeras", precio:429, color:"#b5216b", tallas:["CH","M","G","XG"], etiqueta:"FAVORITA",
-   desc:"Letras de grafiti hechas a mano para la banda del trail.", imagen:"", linkPago:""},
-  {id:"p4", nombre:"Playera Raíz Suelta", cat:"Playeras", precio:399, color:"#0d0d0d", tallas:["CH","M","G","XG"],
-   desc:"Caricatura retro para quien se ha caído en una raíz (o sea, todos).", imagen:"", linkPago:""}
+  {id:"gallo", nombre:"Playera del Gallo", cat:"Playeras", precio:399, tallas:["CH","M","G","XG"], etiqueta:"PRIMER DISEÑO",
+   desc:"Playera negra para rodar, con el gallo ilustrado a mano en la espalda y el logo al frente.",
+   imagenes:["img/playera-gallo-3.webp","img/playera-gallo-2.webp","img/playera-gallo-4.webp","img/playera-gallo-1.webp"], linkPago:""}
 ];
+/* Tarjeta de "próximamente" al final de la tienda (pon proximamente:false para quitarla) */
+const PROXIMAMENTE = true;
 /* ============================================== */
 
 const $ = s => document.querySelector(s);
@@ -429,6 +464,7 @@ try { cart = JSON.parse(localStorage.getItem("ll-cart-v2")||"[]"); } catch(e){ c
 cart = cart.filter(i=>PRODUCTOS.some(p=>p.id===i.id));
 const save = () => { try { localStorage.setItem("ll-cart-v2", JSON.stringify(cart)); } catch(e){} };
 const tallaSel = {};
+const imgSel = {};
 let filtro = "Todo";
 const precioDe = id => PRODUCTOS.find(x=>x.id===id).precio;
 
@@ -441,18 +477,21 @@ function tallaDe(p){ return p.tallas ? (tallaSel[p.id]||p.tallas[1]||p.tallas[0]
 function renderGrid(){
   const list = PRODUCTOS.filter(p=>filtro==="Todo"||p.cat===filtro);
   $("#grid").innerHTML = list.map(p=>{
-    const img = p.imagen ? `<img src="${p.imagen}" alt="${p.nombre}">` : teeSVG(p.color) + `<span class="sample mono">Foto de ejemplo</span>`;
+    const fotos = p.imagenes || (p.imagen ? [p.imagen] : []);
+    const sel = Math.min(imgSel[p.id]||0, Math.max(fotos.length-1,0));
+    const img = fotos.length ? `<img src="${fotos[sel]}" alt="${p.nombre}, foto ${sel+1}">` : teeSVG(p.color) + `<span class="sample mono">Foto de ejemplo</span>`;
+    const thumbs = fotos.length>1 ? `<div class="thumbs" role="group" aria-label="Fotos">${fotos.map((f,i)=>`<button type="button" data-img="${i}" data-id="${p.id}" aria-pressed="${i===sel}" aria-label="Ver foto ${i+1}"><img src="${f}" alt="" loading="lazy"></button>`).join("")}</div>` : "";
     const tallas = p.tallas ? `<div class="sizes" role="group" aria-label="Talla">${p.tallas.map(t=>`<button type="button" data-size="${t}" data-id="${p.id}" aria-pressed="${tallaDe(p)===t}">${t}</button>`).join("")}</div>` : "";
     const buy = p.linkPago ? `<a class="buy" href="${p.linkPago}" target="_blank" rel="noopener">COMPRAR YA</a>` : "";
     return `<article class="card">
-      <div class="img">${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}${img}</div>
+      <div class="img">${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}${img}</div>${thumbs}
       <div class="body">
         <h3>${p.nombre}</h3>
         <p class="desc">${p.desc}</p>
         ${tallas}
         <div class="row"><span class="price">${fmt(p.precio)} <small>MXN</small></span><span class="acts">${buy}<button type="button" class="add" data-add="${p.id}">AGREGAR</button></span></div>
       </div></article>`;
-  }).join("");
+  }).join("") + (PROXIMAMENTE && filtro==="Todo" ? `<div class="soon-card"><span class="mono" style="color:var(--pink-soft)">Próximamente</span><h3>MÁS DISEÑOS EN CAMINO</h3><p>Estamos dibujando los que siguen. Síguenos para enterarte primero.</p><a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">@llantaslentas →</a></div>` : "");
 }
 function addToCart(id){
   const p = PRODUCTOS.find(x=>x.id===id);
@@ -492,6 +531,7 @@ let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.hidden=false;
 document.addEventListener("click", e=>{
   const t = e.target.closest("button"); if(!t) return;
   if(t.dataset.cat){ filtro=t.dataset.cat; renderFilters(); renderGrid(); }
+  else if(t.dataset.img){ imgSel[t.dataset.id]=+t.dataset.img; renderGrid(); }
   else if(t.dataset.size){ tallaSel[t.dataset.id]=t.dataset.size; renderGrid(); }
   else if(t.dataset.add){ addToCart(t.dataset.add); }
   else if(t.dataset.inc){ cart.find(i=>i.key===t.dataset.inc).qty++; save(); renderCart(); }
