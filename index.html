@@ -8,7 +8,8 @@
 <body>
 <title>Llantas Lentas</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="icon" href="img/logo.png">
+<link rel="icon" href="img/logo-cabeza.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Rubik:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
 <style>
@@ -20,8 +21,8 @@
   --black-2:#1b1b1b;
   --white:#ffffff;
   --paper:#f3f3f3;
-  --pink:#e8358a;        /* rosa lengua del logo */
-  --pink-soft:#ff9cc8;
+  --pink:#b5216b;        /* rosa lengua del logo */
+  --pink-soft:#f07ab3;
   --display:"Bungee","Arial Black",Impact,sans-serif;
   --tag:"Permanent Marker","Comic Sans MS",cursive;
   --body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -31,7 +32,7 @@
   color-scheme:dark;
 }
 .dark{--bg:var(--black);--fg:var(--white);--muted:#b9b9b9;--line:#363636;--surface:var(--black-2);--accent-text:var(--pink-soft)}
-.light{--bg:var(--white);--fg:var(--black);--muted:#575757;--line:#d6d6d6;--surface:var(--white);--accent-text:#c41f6f}
+.light{--bg:var(--white);--fg:var(--black);--muted:#575757;--line:#d6d6d6;--surface:var(--white);--accent-text:var(--pink)}
 .dark,.light{background:var(--bg);color:var(--fg)}
 
 *{box-sizing:border-box}
@@ -47,20 +48,21 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--pink);outline-offset:3px}
 .mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
 .dots{background-image:radial-gradient(rgba(255,255,255,.09) 1.3px,transparent 1.7px);background-size:15px 15px}
-.light.dots{background-image:radial-gradient(rgba(232,53,138,.16) 1.3px,transparent 1.7px)}
+.light.dots{background-image:radial-gradient(rgba(181,33,107,.14) 1.3px,transparent 1.7px)}
 
 /* Barra superior */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--black);border-bottom:4px solid var(--pink)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:8px}
 .logo{font-family:var(--display);font-size:1.05rem;text-decoration:none;display:flex;align-items:center;gap:10px;color:var(--white)}
-.logo img{width:42px;height:42px;border-radius:50%;border:2px solid var(--white)}
-.logo b{font-weight:400;color:var(--pink)}
+.logo .head{height:46px;width:auto}
+.logo .word{height:30px;width:auto}
 .top nav{display:flex;gap:18px;align-items:center}
 .top nav a{text-decoration:none;color:#c9c9c9;font-weight:500}
 .top nav a:hover{color:var(--pink-soft)}
-.cart-btn{display:flex;align-items:center;gap:8px;background:var(--pink);color:var(--black);border:2px solid var(--white);padding:7px 14px;font-family:var(--display);font-size:.85rem;box-shadow:3px 3px 0 var(--white)}
+.cart-btn{display:flex;align-items:center;gap:8px;background:var(--pink);color:var(--white);border:2px solid var(--white);padding:7px 14px;font-family:var(--display);font-size:.85rem;box-shadow:3px 3px 0 var(--white)}
 .cart-btn .n{background:var(--black);color:var(--white);min-width:22px;padding:0 6px;text-align:center;font-family:var(--mono)}
-@media (max-width:700px){.top nav .hide-sm{display:none}.logo span{display:none}}
+@media (max-width:700px){.top nav .hide-sm{display:none}}
+@media (max-width:360px){.logo .word{display:none}}
 
 /* Hero */
 .hero{position:relative;overflow:hidden}
@@ -69,25 +71,26 @@ a{color:inherit}
 .hero h1{font-size:clamp(3rem,10vw,7rem);line-height:.9;margin-top:18px;color:var(--white);
   text-shadow:5px 5px 0 var(--pink),-2px -2px 0 var(--black)}
 .hero h1 .l2{display:block;color:var(--pink);text-shadow:5px 5px 0 var(--white)}
+.word-h1 img{display:block;width:min(100%,620px);height:auto;filter:drop-shadow(6px 6px 0 var(--pink))}
 .spray{font-family:var(--tag);color:var(--pink-soft);font-size:clamp(1.4rem,3.4vw,2.1rem);transform:rotate(-4deg);display:inline-block;margin-top:24px}
 .hero p.lead{max-width:44ch;color:#c9c9c9;font-size:1.1rem;margin-top:14px}
 .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;font-family:var(--display);font-size:.95rem;text-decoration:none;border:3px solid var(--black);transition:transform .12s, box-shadow .12s}
-.btn-pink{background:var(--pink);color:var(--black);border-color:var(--white);box-shadow:5px 5px 0 var(--white)}
+.btn-pink{background:var(--pink);color:var(--white);border-color:var(--white);box-shadow:5px 5px 0 var(--white)}
 .btn-line{background:transparent;color:var(--fg);border-color:var(--fg);box-shadow:5px 5px 0 var(--pink)}
 .btn:hover{transform:translate(-2px,-2px)}
 .btn:active{transform:translate(3px,3px);box-shadow:0 0 0 transparent}
 .badge-logo{width:100%;max-width:360px;justify-self:center;position:relative}
-.badge-logo img{width:100%;height:auto;aspect-ratio:1;border-radius:50%;border:6px solid var(--black);box-shadow:0 0 0 6px var(--white),12px 12px 0 6px var(--pink);transform:rotate(-6deg);transition:transform .3s}
+.badge-logo img{width:100%;height:auto;filter:drop-shadow(12px 12px 0 var(--pink));transform:rotate(-6deg);transition:transform .3s}
 .badge-logo:hover img{transform:rotate(4deg) scale(1.03)}
 .badge-logo .stamp{position:absolute;right:-4px;bottom:6%;background:var(--white);color:var(--black);font-family:var(--display);font-size:.8rem;padding:6px 10px;border:3px solid var(--black);transform:rotate(8deg)}
 .zig{height:18px;background:linear-gradient(135deg,var(--white) 25%,transparent 25%) -9px 0/18px 18px,linear-gradient(225deg,var(--white) 25%,transparent 25%) -9px 0/18px 18px;background-color:var(--pink)}
 @media (max-width:780px){.hero .wrap{grid-template-columns:1fr}.badge-logo{max-width:220px;order:-1;justify-self:start;margin-left:8px}}
 
 /* Cinta */
-.ticker{background:var(--pink);color:var(--black);overflow:hidden;border-block:3px solid var(--black);white-space:nowrap}
+.ticker{background:var(--pink);color:var(--white);overflow:hidden;border-block:3px solid var(--black);white-space:nowrap}
 .ticker .track{display:inline-flex;gap:28px;padding-block:9px;font-family:var(--display);font-size:1rem}
-.ticker .track span::after{content:"✸";margin-left:28px;color:var(--white)}
+.ticker .track span::after{content:"✸";margin-left:28px;color:var(--black)}
 @media (prefers-reduced-motion:no-preference){.ticker .track{animation:tick 28s linear infinite}}
 @keyframes tick{to{transform:translateX(-50%)}}
 
@@ -119,7 +122,7 @@ section{padding-block:72px}
 .price{font-family:var(--display);font-size:1.3rem;color:var(--black);font-variant-numeric:tabular-nums}
 .price small{font-family:var(--mono);font-size:.65rem;color:#575757}
 .acts{display:flex;gap:8px}
-.add{background:var(--pink);color:var(--black);border:2px solid var(--black);padding:7px 14px;font-family:var(--display);font-size:.8rem;box-shadow:3px 3px 0 var(--black)}
+.add{background:var(--pink);color:var(--white);border:2px solid var(--black);padding:7px 14px;font-family:var(--display);font-size:.8rem;box-shadow:3px 3px 0 var(--black)}
 .buy{background:var(--black);color:var(--white);border:2px solid var(--black);padding:7px 12px;font-family:var(--display);font-size:.8rem;text-decoration:none;box-shadow:3px 3px 0 var(--pink)}
 .add:active,.buy:active{transform:translate(2px,2px);box-shadow:none}
 
@@ -141,10 +144,10 @@ section{padding-block:72px}
 .bros{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .bro{aspect-ratio:1;max-width:100%;border:3px solid var(--black);display:grid;place-items:center;font-family:var(--display);font-size:2.6rem;box-shadow:6px 6px 0 var(--black);position:relative}
 .bro span{position:absolute;bottom:8px;left:10px;font-family:var(--mono);font-size:.65rem;letter-spacing:.06em}
-.bro:nth-child(1){background:var(--pink);color:var(--black);transform:rotate(-2deg)}
+.bro:nth-child(1){background:var(--pink);color:var(--white);transform:rotate(-2deg)}
 .bro:nth-child(2){background:var(--black);color:var(--white);transform:rotate(1.5deg);box-shadow:6px 6px 0 var(--pink)}
 .bro:nth-child(3){background:var(--paper);color:var(--black);transform:rotate(1deg)}
-.bro:nth-child(4){background:var(--pink);color:var(--black);transform:rotate(-1.5deg)}
+.bro:nth-child(4){background:var(--pink);color:var(--white);transform:rotate(-1.5deg)}
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
 .badge{border:2px solid var(--fg);padding:5px 12px;font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
 .badge:nth-child(2){background:var(--black);color:var(--white)}
@@ -156,18 +159,20 @@ section{padding-block:72px}
 .box h3{font-size:1.15rem}
 .box p{color:var(--muted)}
 .box .status{align-self:flex-start;background:var(--white);color:var(--black);padding:2px 8px}
-.box .status.soon{background:var(--pink)}
+.box .status.soon{background:var(--pink);color:var(--white)}
 @media (max-width:860px){.info .cols{grid-template-columns:1fr}}
 
 /* Contacto */
-.contact{background:var(--pink);color:var(--black);border-top:3px solid var(--black)}
+.contact{background:var(--pink);color:var(--white);border-top:3px solid var(--black)}
 .contact .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
-.contact h2{font-size:clamp(2rem,6vw,3.4rem);color:var(--black);text-shadow:4px 4px 0 var(--white)}
+.contact h2{font-size:clamp(2rem,6vw,3.4rem);color:var(--white);text-shadow:4px 4px 0 var(--black)}
+.contact .brand{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.contact .brand img{width:180px;height:auto;max-width:100%;transform:rotate(-4deg);filter:drop-shadow(6px 6px 0 var(--black))}
 .contact .links{display:grid;gap:12px}
 .contact .links > *{background:var(--black);color:var(--white);padding:14px 18px;display:flex;justify-content:space-between;gap:12px;text-decoration:none;flex-wrap:wrap;border:3px solid var(--black)}
 .contact .links a:hover{background:var(--white);color:var(--black)}
 .contact .links .mono{color:var(--pink-soft)}
-.contact .links a:hover .mono{color:#c41f6f}
+.contact .links a:hover .mono{color:var(--pink)}
 @media (max-width:780px){.contact .wrap{grid-template-columns:1fr}}
 footer{background:var(--black);color:#9a9a9a}
 footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -203,8 +208,8 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#inicio" aria-label="Llantas Lentas, inicio">
-      <img src="img/logo.png" alt="" width="42" height="42">
-      <span>LLANTAS <b>LENTAS</b></span>
+      <img class="head" src="img/logo-cabeza.svg" alt="" width="36" height="46">
+      <img class="word" src="img/logo-letras.svg" alt="" width="101" height="30">
     </a>
     <nav>
       <a class="hide-sm" href="#tienda">Tienda</a>
@@ -219,7 +224,7 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
   <div class="wrap">
     <div>
       <span class="kicker">MTB · CDMX · 100% MEXICANA</span>
-      <h1>LLANTAS<span class="l2">LENTAS</span></h1>
+      <h1 class="word-h1"><img src="img/logo-letras.svg" alt="Llantas Lentas" width="620" height="184"></h1>
       <span class="spray">Todos empezamos por algo.</span>
       <p class="lead">Playeras de diseño propio para la banda que rueda en la montaña. Dibujadas a mano, sin IA, por cuatro hermanos que aman la bici.</p>
       <div class="ctas">
@@ -228,7 +233,7 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
       </div>
     </div>
     <div class="badge-logo">
-      <img src="img/logo.png" alt="Logo de Llantas Lentas: un perro con la lengua de fuera y el nombre en letras de grafiti" width="444" height="444">
+      <img src="img/logo-cabeza.svg" alt="El perro de Llantas Lentas, con la lengua de fuera" width="344" height="437">
       <span class="stamp">HECHO A MANO</span>
     </div>
   </div>
@@ -343,7 +348,7 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
 
   <section class="contact" id="contacto">
     <div class="wrap">
-      <h2>RUEDA CON NOSOTROS</h2>
+      <div class="brand"><img src="img/logo-completo.svg" alt="" width="180" height="165"><h2>RUEDA CON NOSOTROS</h2></div>
       <div class="links">
         <a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener"><span>Instagram</span><span class="mono">@llantaslentas</span></a>
         <div><span>WhatsApp</span><span class="mono" id="waShow"></span></div>
@@ -401,7 +406,7 @@ const PRODUCTOS = [
    desc:"El logo de la casa. Algodón suave, corte unisex.", imagen:"", linkPago:""},
   {id:"p2", nombre:"Playera Bajada Rosa", cat:"Playeras", precio:399, color:"#ffffff", tallas:["CH","M","G","XG"],
    desc:"Ilustración ochentera de bajada en la montaña.", imagen:"", linkPago:""},
-  {id:"p3", nombre:"Playera Grafiti Trail", cat:"Playeras", precio:429, color:"#e8358a", tallas:["CH","M","G","XG"], etiqueta:"FAVORITA",
+  {id:"p3", nombre:"Playera Grafiti Trail", cat:"Playeras", precio:429, color:"#b5216b", tallas:["CH","M","G","XG"], etiqueta:"FAVORITA",
    desc:"Letras de grafiti hechas a mano para la banda del trail.", imagen:"", linkPago:""},
   {id:"p4", nombre:"Playera Raíz Suelta", cat:"Playeras", precio:399, color:"#0d0d0d", tallas:["CH","M","G","XG"],
    desc:"Caricatura retro para quien se ha caído en una raíz (o sea, todos).", imagen:"", linkPago:""}
@@ -416,7 +421,7 @@ function teeSVG(color){
   const ink = color==="#0d0d0d" ? "#ffffff" : "#0d0d0d";
   const edge = color==="#0d0d0d" ? "#ffffff" : "#0d0d0d";
   return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 L42 10 Q50 18 58 10 L70 16 L90 32 L79 46 L70 40 L70 90 L30 90 L30 40 L21 46 L10 32 Z" fill="${color}" stroke="${edge}" stroke-width="3" stroke-linejoin="round"/>
-  <circle cx="50" cy="52" r="13" fill="none" stroke="${ink}" stroke-width="4" stroke-dasharray="5 3"/><circle cx="50" cy="52" r="4" fill="#e8358a"/></svg>`;
+  <circle cx="50" cy="52" r="13" fill="none" stroke="${ink}" stroke-width="4" stroke-dasharray="5 3"/><circle cx="50" cy="52" r="4" fill="#b5216b"/></svg>`;
 }
 
 let cart = [];
