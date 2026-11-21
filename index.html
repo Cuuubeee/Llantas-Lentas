@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Llantas Lentas: playeras MTB de diseño propio, hechas en CDMX por cuatro hermanos.">
+<meta name="description" content="Llantas Lentas: ropa de MTB Enduro y Downhill ilustrada a mano en CDMX. Todos empezamos lento.">
 </head>
 <body>
 <title>Llantas Lentas</title>
@@ -11,273 +11,300 @@
 <link rel="icon" href="img/logo-cabeza.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Rubik:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Space+Grotesk:wght@400;500;700&display=swap">
 <style>
-/* Layout: "sticker bomb" de MTB. Bandas alternas negro / blanco / rosa como el logo,
-   tarjetas tipo calcomanía con borde negro grueso, carrito lateral.
-   Tema único a propósito: la paleta de marca (negro, blanco, rosa) se ve igual en cualquier dispositivo. */
+/* Layout según el Manual de Marca: foto cruda + sticker bomb en la portada, bandas alternas
+   Negro Asfalto / Blanco Hueso, acentos Rosa Lengua + Amarillo Señal (máx. 2 por sección),
+   bordes blancos tipo calcomanía, grano de película y puntos halftone. Tema único a propósito. */
 :root{
-  --black:#0d0d0d;
-  --black-2:#1b1b1b;
-  --white:#ffffff;
-  --paper:#f3f3f3;
-  --pink:#b5216b;        /* rosa lengua del logo */
-  --pink-soft:#f07ab3;
-  --display:"Bungee","Arial Black",Impact,sans-serif;
+  /* Colores principales */
+  --asfalto:#0D0D0D;
+  --hueso:#F5F5F0;
+  --arena:#D9A76A;
+  --cafe:#6E4B2A;
+  --rosa:#D92378;
+  /* Secundarios */
+  --amarillo:#F2C12E;
+  --verde:#1E5631;
+  --azul:#1B4DFF;
+  --carbon:#2B2B2B;
+  /* Derivados para texto */
+  --gris-claro:#B8B8B2;
+  --gris:#5A5A55;
+  /* Tipografía */
+  --display:"Bebas Neue","Arial Narrow",Impact,sans-serif;
   --tag:"Permanent Marker","Comic Sans MS",cursive;
-  --body:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"Space Mono",ui-monospace,Menlo,Consolas,monospace;
-  /* tokens de banda (se redefinen en .dark / .light) */
-  --bg:var(--black);--fg:var(--white);--muted:#b9b9b9;--line:#363636;--surface:var(--black-2);
+  --body:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
 }
-.dark{--bg:var(--black);--fg:var(--white);--muted:#b9b9b9;--line:#363636;--surface:var(--black-2);--accent-text:var(--pink-soft)}
-.light{--bg:var(--white);--fg:var(--black);--muted:#575757;--line:#d6d6d6;--surface:var(--white);--accent-text:var(--pink)}
+.dark{--bg:var(--asfalto);--fg:var(--hueso);--muted:var(--gris-claro);--line:#3a3a37;--surface:var(--carbon)}
+.light{--bg:var(--hueso);--fg:var(--asfalto);--muted:var(--gris);--line:#d4d4cc;--surface:var(--hueso)}
 .dark,.light{background:var(--bg);color:var(--fg)}
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--black);color:var(--white);font:16px/1.55 var(--body);overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--black)}
+body{margin:0;background:var(--asfalto);color:var(--hueso);font:16px/1.6 var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--asfalto)}
 .wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1;text-wrap:balance;margin:0}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:.95;letter-spacing:.01em;text-wrap:balance;margin:0}
 p{margin:0}
 button{font:inherit;cursor:pointer}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
-.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
-.dots{background-image:radial-gradient(rgba(255,255,255,.09) 1.3px,transparent 1.7px);background-size:15px 15px}
-.light.dots{background-image:radial-gradient(rgba(181,33,107,.14) 1.3px,transparent 1.7px)}
+:focus-visible{outline:3px solid var(--amarillo);outline-offset:3px}
+.label{font-family:var(--body);font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase}
+.mk{font-family:var(--tag);font-weight:400;letter-spacing:0;text-transform:none;color:var(--rosa)}
+/* Grano de película (≈12%) */
+.grain{position:relative;isolation:isolate}
+.grain::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.13;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.halftone-rosa{background-image:radial-gradient(rgba(217,35,120,.28) 1.4px,transparent 1.8px);background-size:14px 14px}
+.halftone-amarillo{background-image:radial-gradient(rgba(242,193,46,.3) 1.6px,transparent 2px);background-size:16px 16px}
+/* Borde de papel rasgado */
+.torn{display:block;width:100%;height:22px;color:var(--c,var(--hueso))}
+.torn path{fill:currentColor}
 
 /* Barra superior */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--black);border-bottom:4px solid var(--pink)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--asfalto);border-bottom:3px solid var(--rosa)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:8px}
-.logo{font-family:var(--display);font-size:1.05rem;text-decoration:none;display:flex;align-items:center;gap:10px;color:var(--white)}
-.logo .word{height:36px;width:auto;display:block}
-.top nav{display:flex;gap:18px;align-items:center}
-.top nav a{text-decoration:none;color:#c9c9c9;font-weight:500}
-.top nav a:hover{color:var(--pink-soft)}
-.cart-btn{display:flex;align-items:center;gap:8px;background:var(--pink);color:var(--white);border:2px solid var(--white);padding:7px 14px;font-family:var(--display);font-size:.85rem;box-shadow:3px 3px 0 var(--white)}
-.cart-btn .n{background:var(--black);color:var(--white);min-width:22px;padding:0 6px;text-align:center;font-family:var(--mono)}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo .word{height:38px;width:auto;display:block}
+.top nav{display:flex;gap:22px;align-items:center}
+.top nav a{text-decoration:none;color:var(--gris-claro);font-weight:500}
+.top nav a:hover{color:var(--hueso)}
+.cart-btn{display:flex;align-items:center;gap:8px;background:var(--rosa);color:var(--hueso);border:2px solid var(--hueso);padding:5px 14px;font-family:var(--display);font-size:1.2rem;letter-spacing:.04em;box-shadow:3px 3px 0 var(--hueso)}
+.cart-btn .n{background:var(--asfalto);color:var(--amarillo);min-width:24px;padding:0 6px;text-align:center;font-family:var(--body);font-size:.85rem;font-weight:700}
 @media (max-width:700px){.top nav .hide-sm{display:none}}
 @media (max-width:360px){.logo .word{height:28px}}
 
-/* Hero */
-.hero{position:relative;overflow:hidden;background:var(--black)}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 45%;max-width:none}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,13,13,.9) 0%,rgba(13,13,13,.65) 48%,rgba(13,13,13,.2) 100%)}
-.hero .wrap{position:relative;z-index:1}
-.hero .zig{position:relative;z-index:1}
-.hero .wrap{padding-block:52px 64px;display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
-.kicker{display:inline-block;background:var(--white);color:var(--black);padding:4px 10px;transform:rotate(-2deg);font-family:var(--mono);font-weight:700;font-size:.8rem;letter-spacing:.08em}
-.hero h1{font-size:clamp(3rem,10vw,7rem);line-height:.9;margin-top:18px;color:var(--white);
-  text-shadow:5px 5px 0 var(--pink),-2px -2px 0 var(--black)}
-.hero h1 .l2{display:block;color:var(--pink);text-shadow:5px 5px 0 var(--white)}
-.word-h1 img{display:block;width:min(100%,620px);height:auto;filter:drop-shadow(6px 6px 0 var(--pink))}
-.spray{font-family:var(--tag);color:var(--pink-soft);font-size:clamp(1.4rem,3.4vw,2.1rem);transform:rotate(-4deg);display:inline-block;margin-top:24px}
-.hero h1.hero-tag{font-family:var(--tag);font-weight:400;font-size:clamp(2.4rem,6.5vw,4.6rem);line-height:1.05;color:var(--white);text-shadow:4px 4px 0 var(--pink);transform:rotate(-3deg);margin:28px 0 26px;display:block;max-width:12ch}
-.hero p.lead{max-width:44ch;color:#c9c9c9;font-size:1.1rem;margin-top:14px}
-.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;font-family:var(--display);font-size:.95rem;text-decoration:none;border:3px solid var(--black);transition:transform .12s, box-shadow .12s}
-.btn-pink{background:var(--pink);color:var(--white);border-color:var(--white);box-shadow:5px 5px 0 var(--white)}
-.btn-line{background:transparent;color:var(--fg);border-color:var(--fg);box-shadow:5px 5px 0 var(--pink)}
+/* Portada: foto cruda + sticker bomb */
+.hero{background:var(--asfalto);overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 45%;max-width:none;z-index:0}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(13,13,13,.9) 0%,rgba(13,13,13,.62) 50%,rgba(13,13,13,.15) 100%)}
+.hero .wrap{position:relative;z-index:3;padding-block:56px 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+.kicker{display:inline-block;background:var(--hueso);color:var(--asfalto);padding:5px 10px;transform:rotate(-2deg)}
+.hero h1{font-size:clamp(3.6rem,10vw,7.4rem);color:var(--hueso);margin:22px 0 20px;text-shadow:4px 4px 0 var(--asfalto)}
+.hero h1 .mk{display:inline-block;font-size:.78em;color:var(--rosa);transform:rotate(-5deg);text-shadow:3px 3px 0 var(--asfalto);margin-left:.1em}
+.hero p.lead{max-width:42ch;color:#dcdcd6;font-size:1.08rem}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 22px 7px;font-family:var(--display);font-size:1.35rem;letter-spacing:.04em;text-decoration:none;border:3px solid var(--asfalto);transition:transform .12s, box-shadow .12s}
+.btn-rosa{background:var(--rosa);color:var(--hueso);border-color:var(--hueso);box-shadow:5px 5px 0 var(--hueso)}
+.btn-line{background:transparent;color:var(--fg,var(--hueso));border-color:currentColor;box-shadow:5px 5px 0 var(--rosa)}
 .btn:hover{transform:translate(-2px,-2px)}
 .btn:active{transform:translate(3px,3px);box-shadow:0 0 0 transparent}
 .badge-logo{width:100%;max-width:400px;justify-self:center;position:relative}
 .badge-logo img{width:100%;height:auto;transform:rotate(-6deg);transition:transform .3s}
-.badge-logo:hover img{transform:rotate(4deg) scale(1.03)}
-.badge-logo .stamp{position:absolute;right:-4px;bottom:6%;background:var(--white);color:var(--black);font-family:var(--display);font-size:.8rem;padding:6px 10px;border:3px solid var(--black);transform:rotate(8deg)}
-.zig{height:18px;background:linear-gradient(135deg,var(--white) 25%,transparent 25%) -9px 0/18px 18px,linear-gradient(225deg,var(--white) 25%,transparent 25%) -9px 0/18px 18px;background-color:var(--pink)}
-@media (max-width:780px){.hero .wrap{grid-template-columns:1fr}.badge-logo{max-width:250px;order:-1;justify-self:start;margin-left:8px}.hero::after{background:rgba(13,13,13,.7)}}
+.badge-logo:hover img{transform:rotate(3deg) scale(1.03)}
+.stamp{position:absolute;right:-4px;bottom:4%;background:var(--amarillo);color:var(--asfalto);font-family:var(--display);font-size:1.15rem;letter-spacing:.04em;padding:5px 12px 3px;border:3px solid var(--asfalto);transform:rotate(7deg)}
+.hero .torn{position:relative;z-index:3;margin-bottom:-1px}
+@media (max-width:780px){.hero .wrap{grid-template-columns:1fr;padding-top:32px}.badge-logo{max-width:250px;order:-1;justify-self:start;margin-left:8px}.hero::after{background:rgba(13,13,13,.68)}}
 
-/* Cinta */
-.ticker{background:var(--pink);color:var(--white);overflow:hidden;border-block:3px solid var(--black);white-space:nowrap}
-.ticker .track{display:inline-flex;gap:28px;padding-block:9px;font-family:var(--display);font-size:1rem}
-.ticker .track span::after{content:"✸";margin-left:28px;color:var(--black)}
-@media (prefers-reduced-motion:no-preference){.ticker .track{animation:tick 28s linear infinite}}
+/* Cinta de frases insignia */
+.ticker{background:var(--rosa);color:var(--hueso);overflow:hidden;border-bottom:3px solid var(--asfalto);white-space:nowrap}
+.ticker .track{display:inline-flex;gap:30px;padding-block:8px 6px;font-family:var(--display);font-size:1.55rem;letter-spacing:.03em}
+.ticker .track span::after{content:"✸";margin-left:30px;color:var(--amarillo)}
+@media (prefers-reduced-motion:no-preference){.ticker .track{animation:tick 34s linear infinite}}
 @keyframes tick{to{transform:translateX(-50%)}}
 
-section{padding-block:72px}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
-.sec-head h2{font-size:clamp(2.2rem,6vw,3.6rem);text-shadow:4px 4px 0 var(--pink)}
-.sec-head p{color:var(--muted);margin-top:10px;max-width:54ch}
+section{padding-block:76px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.sec-head h2,.big{font-size:clamp(3rem,8vw,5.2rem)}
+.sec-head p{color:var(--muted);margin-top:12px;max-width:54ch;font-size:1.05rem}
+.sec-head .label{color:var(--rosa);display:block;margin-bottom:8px}
+.dark .sec-head .label{color:var(--amarillo)}
 
 /* Tienda */
 .filters{display:flex;gap:8px;flex-wrap:wrap}
-.chip{border:2px solid var(--line);background:transparent;color:var(--fg);padding:6px 14px;font-family:var(--mono);font-size:.8rem;text-transform:uppercase}
-.chip[aria-pressed="true"]{background:var(--black);color:var(--white);border-color:var(--black)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,340px));gap:26px}
+.chip{border:2px solid var(--line);background:transparent;color:var(--fg);padding:6px 14px}
+.chip[aria-pressed="true"]{background:var(--asfalto);color:var(--hueso);border-color:var(--asfalto)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,350px));gap:28px}
 @media (max-width:620px){.grid{grid-template-columns:1fr}}
-.card{background:var(--white);color:var(--black);border:3px solid var(--black);box-shadow:6px 6px 0 var(--black);display:flex;flex-direction:column;transition:transform .15s, box-shadow .15s}
-.card:nth-child(3n+1){--pop:var(--pink)} .card:nth-child(3n+2){--pop:var(--black)} .card:nth-child(3n+3){--pop:var(--paper)}
-.card:hover{transform:rotate(-1deg) translateY(-3px);box-shadow:6px 6px 0 var(--pink)}
-.card .img{aspect-ratio:1;max-width:100%;display:grid;place-items:center;position:relative;background:var(--pop);border-bottom:3px solid var(--black);overflow:hidden}
+.card{background:var(--hueso);color:var(--asfalto);border:3px solid var(--asfalto);box-shadow:7px 7px 0 var(--asfalto);display:flex;flex-direction:column;transition:transform .15s, box-shadow .15s}
+.card:hover{transform:rotate(-1deg) translateY(-3px);box-shadow:7px 7px 0 var(--rosa)}
+.card .img{aspect-ratio:1;max-width:100%;display:grid;place-items:center;position:relative;background:var(--asfalto);border-bottom:3px solid var(--asfalto);overflow:hidden}
 .card .img svg{width:70%;height:auto}
 .card .img img{width:100%;height:100%;object-fit:cover}
+.sticker{position:absolute;top:12px;left:-4px;z-index:3;background:var(--amarillo);color:var(--asfalto);border:2px solid var(--asfalto);padding:3px 12px 1px;font-family:var(--display);font-size:1.15rem;letter-spacing:.04em;transform:rotate(-4deg)}
+.sample{position:absolute;bottom:10px;right:10px;background:var(--hueso);color:var(--asfalto);border:1.5px solid var(--asfalto);padding:2px 8px}
 .thumbs{display:flex;gap:6px;padding:10px 16px 0}
-.thumbs button{width:48px;height:48px;padding:0;border:2px solid #d6d6d6;background:none;overflow:hidden}
-.thumbs button[aria-pressed="true"]{border-color:var(--black);box-shadow:2px 2px 0 var(--pink)}
+.thumbs button{width:50px;height:50px;padding:0;border:2px solid #d4d4cc;background:none;overflow:hidden}
+.thumbs button[aria-pressed="true"]{border-color:var(--asfalto);box-shadow:2px 2px 0 var(--rosa)}
 .thumbs img{width:100%;height:100%;object-fit:cover;display:block}
-.soon-card{background:var(--black);color:var(--white);border:3px dashed var(--pink);display:flex;flex-direction:column;justify-content:center;gap:14px;padding:28px;min-height:280px}
-.soon-card h3{font-size:1.5rem;color:var(--white);text-shadow:3px 3px 0 var(--pink)}
-.soon-card p{color:#b9b9b9}
-.soon-card a{align-self:flex-start;color:var(--pink-soft);font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
-/* Galería */
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.gallery figure{margin:0;border:4px solid var(--white);box-shadow:8px 8px 0 var(--pink);overflow:hidden;aspect-ratio:4/5;max-width:100%}
-.gallery figure:nth-child(odd){transform:rotate(-1.5deg)} .gallery figure:nth-child(even){transform:rotate(1.5deg) translateY(14px)}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card h3{font-size:1.9rem}
+.card .desc{color:var(--gris);font-size:.94rem;flex:1}
+.card .gift{font-size:.82rem;color:var(--asfalto);border-left:3px solid var(--rosa);padding-left:8px}
+.sizes{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.sizes .label{color:var(--gris);margin-right:4px}
+.sizes button{border:2px solid #d4d4cc;background:transparent;color:var(--asfalto);padding:3px 10px;font-weight:700;font-size:.82rem}
+.sizes button[aria-pressed="true"]{border-color:var(--asfalto);color:var(--hueso);background:var(--asfalto)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
+.price{font-family:var(--display);font-size:2rem;color:var(--asfalto);font-variant-numeric:tabular-nums;line-height:1}
+.price small{font-family:var(--body);font-size:.7rem;font-weight:700;color:var(--gris)}
+.acts{display:flex;gap:8px}
+.add{background:var(--rosa);color:var(--hueso);border:2px solid var(--asfalto);padding:6px 16px 4px;font-family:var(--display);font-size:1.2rem;letter-spacing:.04em;box-shadow:3px 3px 0 var(--asfalto)}
+.buy{background:var(--asfalto);color:var(--hueso);border:2px solid var(--asfalto);padding:6px 14px 4px;font-family:var(--display);font-size:1.2rem;letter-spacing:.04em;text-decoration:none;box-shadow:3px 3px 0 var(--rosa)}
+.add:active,.buy:active{transform:translate(2px,2px);box-shadow:none}
+.soon-card{background:var(--asfalto);color:var(--hueso);border:3px dashed var(--rosa);display:flex;flex-direction:column;justify-content:center;gap:14px;padding:28px;min-height:280px}
+.soon-card .label{color:var(--amarillo)}
+.soon-card h3{font-size:2.6rem}
+.soon-card p{color:var(--gris-claro)}
+.soon-card a{align-self:flex-start;color:var(--hueso);font-weight:700;text-decoration-color:var(--rosa);text-decoration-thickness:2px;text-underline-offset:4px}
+
+/* En el cerro */
+.cerro .wrap{position:relative;z-index:3}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.gallery figure{margin:0;border:5px solid var(--hueso);overflow:hidden;aspect-ratio:4/5;max-width:100%;position:relative}
+.gallery figure:nth-child(odd){transform:rotate(-1.5deg);box-shadow:8px 8px 0 var(--rosa)}
+.gallery figure:nth-child(even){transform:rotate(1.5deg) translateY(16px);box-shadow:8px 8px 0 var(--amarillo)}
 .gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .gallery figure:hover img{transform:scale(1.05)}
+.cerro .phrase{font-family:var(--tag);color:var(--amarillo);font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:48px;transform:rotate(-1.5deg)}
 @media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
-.pista{background:var(--pink);color:var(--white);border-block:3px solid var(--black)}
-.pista .sec-head h2{text-shadow:4px 4px 0 var(--black)}
-.pista .sec-head p{color:#fbe3ef}
-.pista .gallery figure{box-shadow:8px 8px 0 var(--black)}
-.pista .wrap{padding-bottom:14px}
-.sticker{position:absolute;top:12px;left:-6px;background:var(--white);color:var(--black);border:2px solid var(--black);padding:3px 12px;font-family:var(--display);font-size:.78rem;transform:rotate(-4deg)}
-.sample{position:absolute;bottom:10px;right:10px;background:var(--white);color:var(--black);border:1.5px solid var(--black);padding:2px 8px}
-.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.card h3{font-size:1.1rem;line-height:1.15}
-.card .desc{color:#575757;font-size:.92rem;flex:1}
-.sizes{display:flex;gap:6px;flex-wrap:wrap}
-.sizes button{border:2px solid #d6d6d6;background:transparent;color:var(--black);padding:3px 9px;font-family:var(--mono);font-size:.78rem}
-.sizes button[aria-pressed="true"]{border-color:var(--black);color:var(--white);background:var(--black)}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
-.price{font-family:var(--display);font-size:1.3rem;color:var(--black);font-variant-numeric:tabular-nums}
-.price small{font-family:var(--mono);font-size:.65rem;color:#575757}
-.acts{display:flex;gap:8px}
-.add{background:var(--pink);color:var(--white);border:2px solid var(--black);padding:7px 14px;font-family:var(--display);font-size:.8rem;box-shadow:3px 3px 0 var(--black)}
-.buy{background:var(--black);color:var(--white);border:2px solid var(--black);padding:7px 12px;font-family:var(--display);font-size:.8rem;text-decoration:none;box-shadow:3px 3px 0 var(--pink)}
-.add:active,.buy:active{transform:translate(2px,2px);box-shadow:none}
+
+/* Historia */
+.story .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start}
+.story .txt{display:grid;gap:14px;margin-top:22px;max-width:60ch;font-size:1.05rem}
+.story .txt strong{color:var(--rosa)}
+.bros{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.bro{aspect-ratio:1;max-width:100%;border:4px solid var(--asfalto);display:grid;place-items:center;font-family:var(--display);font-size:3.4rem;box-shadow:6px 6px 0 var(--asfalto);position:relative}
+.bro span{position:absolute;bottom:8px;left:10px;font-family:var(--body);font-weight:700;font-size:.65rem;letter-spacing:.1em}
+.bro:nth-child(1){background:var(--rosa);color:var(--hueso);transform:rotate(-2deg)}
+.bro:nth-child(2){background:var(--asfalto);color:var(--hueso);transform:rotate(1.5deg);box-shadow:6px 6px 0 var(--rosa)}
+.bro:nth-child(3){background:var(--amarillo);color:var(--asfalto);transform:rotate(1deg)}
+.bro:nth-child(4){background:var(--asfalto);color:var(--amarillo);transform:rotate(-1.5deg);box-shadow:6px 6px 0 var(--amarillo)}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.badge{border:2px solid var(--asfalto);padding:5px 12px}
+.badge:nth-child(2){background:var(--asfalto);color:var(--hueso)}
+@media (max-width:780px){.story .wrap{grid-template-columns:1fr;gap:36px}}
+
+/* Bruno */
+.bruno .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:52px;align-items:center;position:relative;z-index:3}
+.bruno-art{position:relative;max-width:380px;width:100%;justify-self:center}
+.bruno-art img{width:100%;height:auto;transform:rotate(-5deg);filter:drop-shadow(10px 10px 0 var(--amarillo))}
+.bruno-art .stamp{bottom:2%;right:0}
+.bruno h2 .mk{color:var(--amarillo);font-size:.8em;display:inline-block;transform:rotate(-4deg)}
+.bruno .txt{display:grid;gap:14px;margin-top:22px;max-width:56ch;font-size:1.05rem;color:#dcdcd6}
+.bruno .txt em{color:var(--amarillo);font-style:normal;font-weight:700}
+.bruno .ctas{margin-top:26px}
+@media (max-width:780px){.bruno .wrap{grid-template-columns:1fr;gap:28px}.bruno-art{max-width:230px;justify-self:start}}
 
 /* Niveles */
 .trail{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.lvl{background:var(--surface);border:2px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:10px}
-.lvl .ic{width:46px;height:46px}
-.lvl h3{font-size:1.05rem}
-.lvl p{color:var(--muted);font-size:.92rem}
-.lvl .mono{color:var(--accent-text)}
-.trail-note{font-family:var(--tag);font-size:clamp(1.4rem,3.4vw,2rem);color:var(--pink-soft);margin-top:30px;transform:rotate(-1.5deg)}
+.lvl{background:var(--hueso);border:3px solid var(--asfalto);box-shadow:5px 5px 0 var(--asfalto);padding:20px;display:flex;flex-direction:column;gap:10px}
+.lvl .ic{width:44px;height:44px}
+.lvl h3{font-size:1.9rem}
+.lvl p{color:var(--gris);font-size:.94rem}
+.lvl .label{color:var(--asfalto)}
+.trail-note{font-family:var(--tag);font-size:clamp(1.6rem,3.6vw,2.3rem);color:var(--rosa);margin-top:36px;transform:rotate(-1.5deg)}
 @media (max-width:860px){.trail{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:460px){.trail{grid-template-columns:1fr}}
 
-/* Historia */
-.story .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
-.story h2{font-size:clamp(2.2rem,6vw,3.6rem);text-shadow:4px 4px 0 var(--pink)}
-.story .txt{display:grid;gap:14px;margin-top:20px;max-width:60ch;font-size:1.05rem}
-.bros{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.bro{aspect-ratio:1;max-width:100%;border:3px solid var(--black);display:grid;place-items:center;font-family:var(--display);font-size:2.6rem;box-shadow:6px 6px 0 var(--black);position:relative}
-.bro span{position:absolute;bottom:8px;left:10px;font-family:var(--mono);font-size:.65rem;letter-spacing:.06em}
-.bro:nth-child(1){background:var(--pink);color:var(--white);transform:rotate(-2deg)}
-.bro:nth-child(2){background:var(--black);color:var(--white);transform:rotate(1.5deg);box-shadow:6px 6px 0 var(--pink)}
-.bro:nth-child(3){background:var(--paper);color:var(--black);transform:rotate(1deg)}
-.bro:nth-child(4){background:var(--pink);color:var(--white);transform:rotate(-1.5deg)}
-.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-.badge{border:2px solid var(--fg);padding:5px 12px;font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
-.badge:nth-child(2){background:var(--black);color:var(--white)}
-@media (max-width:780px){.story .wrap{grid-template-columns:1fr;gap:32px}}
-
 /* Entregas y pagos */
-.info .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.info .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .box{border:3px dashed var(--line);padding:22px;display:flex;flex-direction:column;gap:10px}
-.box h3{font-size:1.15rem}
+.box h3{font-size:1.8rem}
 .box p{color:var(--muted)}
-.box .status{align-self:flex-start;background:var(--white);color:var(--black);padding:2px 8px}
-.box .status.soon{background:var(--pink);color:var(--white)}
-@media (max-width:860px){.info .cols{grid-template-columns:1fr}}
+.box .status{align-self:flex-start;background:var(--hueso);color:var(--asfalto);padding:3px 8px}
+.box .status.soon{background:var(--amarillo)}
+.box .status.gift{background:var(--rosa);color:var(--hueso)}
+@media (max-width:960px){.info .cols{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.info .cols{grid-template-columns:1fr}}
 
 /* Contacto */
-.contact{background:var(--pink);color:var(--white);border-top:3px solid var(--black)}
+.contact{background:var(--rosa);color:var(--hueso);border-block:3px solid var(--asfalto)}
 .contact .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
-.contact h2{font-size:clamp(2rem,6vw,3.4rem);color:var(--white);text-shadow:4px 4px 0 var(--black)}
-.contact .brand{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-.contact .brand img{width:180px;height:auto;max-width:100%;transform:rotate(-4deg);filter:drop-shadow(6px 6px 0 var(--black))}
+.contact h2{font-size:clamp(2.8rem,7vw,4.6rem);color:var(--hueso);text-shadow:4px 4px 0 var(--asfalto)}
+.contact .brand{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.contact .brand img{width:190px;height:auto;max-width:100%;transform:rotate(-4deg)}
 .contact .links{display:grid;gap:12px}
-.contact .links > *{background:var(--black);color:var(--white);padding:14px 18px;display:flex;justify-content:space-between;gap:12px;text-decoration:none;flex-wrap:wrap;border:3px solid var(--black)}
-.contact .links a:hover{background:var(--white);color:var(--black)}
-.contact .links .mono{color:var(--pink-soft)}
-.contact .links a:hover .mono{color:var(--pink)}
+.contact .links > *{background:var(--asfalto);color:var(--hueso);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;flex-wrap:wrap;border:3px solid var(--asfalto)}
+.contact .links a:hover{background:var(--hueso);color:var(--asfalto)}
+.contact .links .label{color:var(--amarillo);letter-spacing:.06em}
+.contact .links a:hover .label{color:var(--rosa)}
 @media (max-width:780px){.contact .wrap{grid-template-columns:1fr}}
-footer{background:var(--black);color:#9a9a9a}
-footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer{background:var(--asfalto);color:var(--gris-claro)}
+footer .wrap{padding-block:26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer .mk{color:var(--hueso);font-size:1.15rem}
 
 /* Carrito */
-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:20}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100%);background:var(--black);color:var(--white);border-left:4px solid var(--pink);z-index:21;display:flex;flex-direction:column;
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100%);background:var(--asfalto);color:var(--hueso);border-left:4px solid var(--rosa);z-index:21;display:flex;flex-direction:column;
   padding:calc(env(safe-area-inset-top,0px) + 20px) max(20px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 20px) 20px}
 .drawer header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.drawer h2{font-size:1.7rem;color:var(--pink)}
-.x{background:transparent;border:2px solid var(--white);color:var(--white);width:36px;height:36px}
+.drawer h2{font-size:2.4rem;color:var(--hueso)}
+.x{background:transparent;border:2px solid var(--hueso);color:var(--hueso);width:36px;height:36px}
 .items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:12px;min-height:0}
-.item{display:grid;grid-template-columns:1fr auto;gap:4px 12px;background:var(--black-2);border:2px solid #363636;padding:12px}
+.item{display:grid;grid-template-columns:1fr auto;gap:4px 12px;background:var(--carbon);border:2px solid #3a3a37;padding:12px}
 .item .t{font-weight:700}
-.item .m{color:#b9b9b9;font-size:.85rem}
+.item .m{color:var(--gris-claro);font-size:.85rem}
+.item .p{font-weight:700;font-variant-numeric:tabular-nums}
 .qty{display:flex;align-items:center;gap:6px}
-.qty button{width:28px;height:28px;border:2px solid #4a4a4a;background:transparent;color:var(--white)}
-.qty span{font-family:var(--mono);min-width:20px;text-align:center}
-.empty{color:#b9b9b9;text-align:center;padding:40px 10px}
-.empty b{display:block;font-family:var(--tag);font-size:1.5rem;color:var(--pink-soft);font-weight:400;margin-bottom:6px}
-.totals{border-top:3px dashed #363636;padding-top:14px;margin-top:14px;display:grid;gap:10px}
+.qty button{width:28px;height:28px;border:2px solid #55554f;background:transparent;color:var(--hueso)}
+.qty span{min-width:20px;text-align:center;font-weight:700}
+.empty{color:var(--gris-claro);text-align:center;padding:40px 10px}
+.empty b{display:block;font-family:var(--tag);font-size:1.6rem;color:var(--rosa);font-weight:400;margin-bottom:6px}
+.totals{border-top:3px dashed #3a3a37;padding-top:14px;margin-top:14px;display:grid;gap:10px}
 .totals .line{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
-.totals .grand{font-family:var(--display);font-size:1.2rem;color:var(--pink)}
-.drawer label{font-size:.8rem;color:#b9b9b9;display:block;margin-bottom:4px}
-.drawer input,.drawer select{width:100%;padding:9px 12px;border:2px solid #4a4a4a;background:var(--black-2);color:var(--white);font:inherit}
-.order-text{width:100%;min-height:96px;font-family:var(--mono);font-size:.75rem;border:2px solid #4a4a4a;background:var(--black-2);color:var(--white);padding:10px;resize:vertical}
-.note{font-size:.8rem;color:#b9b9b9}
-.drawer .btn-line{color:var(--white);border-color:var(--white)}
+.totals .grand{font-family:var(--display);font-size:1.8rem;color:var(--amarillo);line-height:1}
+.drawer label{font-size:.8rem;color:var(--gris-claro);display:block;margin-bottom:4px}
+.drawer input,.drawer select{width:100%;padding:9px 12px;border:2px solid #55554f;background:var(--carbon);color:var(--hueso);font:inherit}
+.order-text{width:100%;min-height:96px;font-family:var(--body);font-size:.78rem;border:2px solid #55554f;background:var(--carbon);color:var(--hueso);padding:10px;resize:vertical}
+.note{font-size:.8rem;color:var(--gris-claro)}
+.drawer .btn-line{color:var(--hueso)}
 .btn-block{width:100%}
-.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--white);color:var(--black);border:3px solid var(--black);box-shadow:4px 4px 0 var(--pink);padding:10px 18px;z-index:30;font-family:var(--display);font-size:.85rem}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--hueso);color:var(--asfalto);border:3px solid var(--asfalto);box-shadow:4px 4px 0 var(--rosa);padding:8px 18px 6px;z-index:30;font-family:var(--display);font-size:1.25rem;letter-spacing:.03em;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
 </style>
 
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#inicio" aria-label="Llantas Lentas, inicio">
-      <img class="word" src="img/logo-letras.svg" alt="" width="101" height="30">
+      <img class="word" src="img/logo-letras.svg" alt="" width="128" height="38">
     </a>
     <nav>
       <a class="hide-sm" href="#tienda">Tienda</a>
-      <a class="hide-sm" href="#historia">Nosotros</a>
+      <a class="hide-sm" href="#bruno">Bruno</a>
       <a class="hide-sm" href="#entregas">Entregas</a>
       <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrito">CARRITO <span class="n" id="cartCount">0</span></button>
     </nav>
   </div>
 </header>
 
-<div class="hero dark" id="inicio">
+<div class="hero grain" id="inicio">
   <img class="hero-bg" src="img/hero-salto.webp" alt="" width="1080" height="720">
   <div class="wrap">
     <div>
-      <span class="kicker">MTB · CDMX · 100% MEXICANA</span>
-      <h1 class="spray hero-tag">Todos empezamos por algo.</h1>
-      <p class="lead">Playeras de diseño propio para la banda que rueda en la montaña. Dibujadas a mano, sin IA, por cuatro hermanos que aman la bici.</p>
+      <span class="kicker label">MTB Enduro &amp; Downhill · Hecho en México</span>
+      <h1>Todos empezamos <span class="mk">lento.</span></h1>
+      <p class="lead">Ropa de MTB ilustrada a mano en CDMX. Aquí celebramos igual tu primer bunny hop que el mejor tiempo de la pista. 🤘</p>
       <div class="ctas">
-        <a class="btn btn-pink" href="#tienda">VER PLAYERAS</a>
-        <a class="btn btn-line" href="#historia">NUESTRA HISTORIA</a>
+        <a class="btn btn-rosa" href="#tienda">Ver la Chicken Line</a>
+        <a class="btn btn-line" href="#bruno">Conoce a Bruno</a>
       </div>
     </div>
     <div class="badge-logo">
-      <img src="img/logo-completo.svg" alt="Logo de Llantas Lentas: el perro con la lengua de fuera y el nombre en letras de grafiti" width="400" height="366">
-      <span class="stamp">HECHO A MANO</span>
+      <img src="img/logo-completo.svg" alt="Logo de Llantas Lentas: Bruno, el perro con la lengua de fuera, y el nombre en letras de graffiti" width="400" height="366">
+      <span class="stamp">Aprobado por Bruno</span>
     </div>
   </div>
-  <div class="zig" aria-hidden="true"></div>
+  <svg class="torn" style="--c:var(--rosa)" viewBox="0 0 1200 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22 L0 12 L24 4 L50 12 L65 3 L96 3 L121 11 L136 16 L166 5 L181 3 L208 8 L224 5 L240 10 L267 2 L299 3 L320 12 L354 11 L369 11 L401 8 L416 5 L431 10 L449 6 L476 4 L507 3 L539 6 L570 15 L605 4 L622 11 L654 12 L674 7 L691 10 L727 3 L759 2 L792 5 L821 12 L852 8 L890 7 L918 11 L946 7 L969 5 L988 13 L1026 5 L1042 11 L1065 10 L1094 16 L1118 13 L1146 6 L1179 3 L1196 10 L1200 4 L1200 22Z"/></svg>
 </div>
 
 <div class="ticker" aria-hidden="true">
   <div class="track">
-    <span>HECHO EN MÉXICO</span><span>DISEÑO PROPIO, CERO IA</span><span>MTB</span><span>TODOS SOMOS LLANTAS LENTAS</span><span>ENTREGAS EN CDMX</span><span>RUEDA A TU RITMO</span>
-    <span>HECHO EN MÉXICO</span><span>DISEÑO PROPIO, CERO IA</span><span>MTB</span><span>TODOS SOMOS LLANTAS LENTAS</span><span>ENTREGAS EN CDMX</span><span>RUEDA A TU RITMO</span>
+    <span>Lento pero fino</span><span>Al tiro en la bajada</span><span>Puro flow de cerro</span><span>Trazando duro</span><span>Nunca ruedas solo</span><span>Hecho en México</span>
+    <span>Lento pero fino</span><span>Al tiro en la bajada</span><span>Puro flow de cerro</span><span>Trazando duro</span><span>Nunca ruedas solo</span><span>Hecho en México</span>
   </div>
 </div>
 
 <main>
-  <section class="light dots" id="tienda">
+  <section class="light" id="tienda">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <h2>PLAYERAS</h2>
-          <p>Nuestro primer diseño ya salió. Ilustraciones urbanas, de grafiti y caricatura retro, para rodar y para el día a día.</p>
+          <span class="label">Drop 01</span>
+          <h2>La tienda</h2>
+          <p>Nuestro primer diseño ya está aquí: la <strong>Chicken Line</strong>. Ilustrada a mano y probada en el cerro.</p>
         </div>
         <div class="filters" id="filters" role="group" aria-label="Filtrar por categoría"></div>
       </div>
@@ -285,74 +312,39 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
     </div>
   </section>
 
-  <section class="pista" id="pista">
+  <section class="cerro dark grain halftone-rosa" id="cerro">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <h2>EN LA PISTA</h2>
-          <p>Así se ven en el bosque: probadas en la tierra, en los saltos y en las caídas.</p>
+          <span class="label">Producto en acción</span>
+          <h2>En el cerro</h2>
+          <p>Con polvo, lodo y casco puesto. Así se ve la Chicken Line en la pista.</p>
         </div>
       </div>
       <div class="gallery">
-        <figure><img src="img/rodada-1.webp" alt="Ciclista con casco y la playera de Llantas Lentas señalando a la cámara en el bosque" loading="lazy" width="800" height="1000"></figure>
-        <figure><img src="img/rodada-2.webp" alt="Ciclista saltando con su bicicleta de montaña entre los árboles" loading="lazy" width="800" height="1000"></figure>
-        <figure><img src="img/rodada-3.webp" alt="Ciclista de espaldas junto a un árbol, con el gallo en la espalda de la playera" loading="lazy" width="800" height="1000"></figure>
-        <figure><img src="img/rodada-4.webp" alt="Collage de la playera del gallo y un ciclista empujando su bici en la tierra" loading="lazy" width="800" height="1000"></figure>
+        <figure><img src="img/rodada-1.webp" alt="Rider con casco y la playera de Llantas Lentas señalando a la cámara en el bosque" loading="lazy" width="800" height="1000"></figure>
+        <figure><img src="img/rodada-2.webp" alt="Rider saltando con su bici de montaña entre los árboles" loading="lazy" width="800" height="1000"></figure>
+        <figure><img src="img/rodada-3.webp" alt="Rider de espaldas junto a un árbol, con el gallo de la Chicken Line en la espalda" loading="lazy" width="800" height="1000"></figure>
+        <figure><img src="img/rodada-4.webp" alt="Collage de la playera Chicken Line y un rider empujando su bici en la tierra" loading="lazy" width="800" height="1000"></figure>
       </div>
-    </div>
-  </section>
-
-  <section class="dark" id="niveles">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <h2>¿CUÁL ES TU NIVEL?</h2>
-          <p>En los bike parks las pistas se marcan por dificultad. Aquí no importa en cuál ruedes.</p>
-        </div>
-      </div>
-      <div class="trail">
-        <div class="lvl">
-          <svg class="ic" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="#2fbf6b" stroke="#ffffff" stroke-width="2.5"/></svg>
-          <span class="mono">Verde · Fácil</span>
-          <h3>EL PRIMER RODAJE</h3>
-          <p>Bici prestada, tenis y muchas ganas. Aquí empezamos todos.</p>
-        </div>
-        <div class="lvl">
-          <svg class="ic" viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="5" width="30" height="30" fill="#2d7fe6" stroke="#ffffff" stroke-width="2.5"/></svg>
-          <span class="mono">Azul · Intermedio</span>
-          <h3>YA LE AGARRASTE</h3>
-          <p>Raíces, piedras y tus primeras bajadas sin frenar a cada rato.</p>
-        </div>
-        <div class="lvl">
-          <svg class="ic" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 L37 20 L20 37 L3 20 Z" fill="#0d0d0d" stroke="#ffffff" stroke-width="2.5"/></svg>
-          <span class="mono">Negro · Difícil</span>
-          <h3>SALTOS Y DROPS</h3>
-          <p>Te avientas los saltos y conoces la pista de memoria.</p>
-        </div>
-        <div class="lvl">
-          <svg class="ic" viewBox="0 0 64 40" aria-hidden="true" style="width:72px"><path d="M18 3 L35 20 L18 37 L1 20 Z" fill="#0d0d0d" stroke="#ffffff" stroke-width="2.5"/><path d="M46 3 L63 20 L46 37 L29 20 Z" fill="#0d0d0d" stroke="#ffffff" stroke-width="2.5"/></svg>
-          <span class="mono">Doble negro · Experto</span>
-          <h3>MODO FRENÉTICO</h3>
-          <p>Downhill, enduro y cero miedo. Y aun así, alguna vez fuiste verde.</p>
-        </div>
-      </div>
-      <p class="trail-note">Rápido o lento, todos somos Llantas Lentas.</p>
+      <p class="phrase">Suelta el freno, agarra el flow.</p>
     </div>
   </section>
 
   <section class="story light" id="historia">
     <div class="wrap">
       <div>
-        <h2>CUATRO HERMANOS, UNA BICI</h2>
+        <span class="label" style="color:var(--rosa)">Nuestra historia</span>
+        <h2 class="big">Cuatro hermanos y un cerro</h2>
         <div class="txt">
-          <p>Llantas Lentas empezó con algo sencillo: el gusto por el ciclismo. Grabábamos nuestras rodadas y queríamos compartir los videos y todo lo que vivimos arriba de la bici.</p>
-          <p>Así nació la marca. Somos cuatro hermanos de la Ciudad de México y queremos que cualquiera que se suba a una bici se sienta parte. No importa tu nivel ni cuánto tiempo lleves rodando.</p>
-          <p>Hoy empezamos con playeras de diseño propio. Cada ilustración la hacemos nosotros, sin inteligencia artificial. Después vienen más cosas del mundo de los deportes extremos.</p>
+          <p>Llantas Lentas es una marca mexicana de deportes extremos. Arrancamos con el MTB Enduro y Downhill, grabando nuestras rodadas para compartirlas con la banda.</p>
+          <p>El nombre tiene su ironía, pero la idea es <strong>progreso constante con buena vibra</strong>. No importa si hoy es tu primera bajada o si quieres romper el cronómetro: todos empezamos lento, y lo que nos une en el cerro son las ganas de intentarlo.</p>
+          <p>Cada ilustración la dibujamos nosotros, sin IA, mezclando graffiti, retro ochentero y calle mexicana.</p>
         </div>
         <div class="badges">
-          <span class="badge">100% mexicana</span>
-          <span class="badge">Diseño a mano</span>
-          <span class="badge">Hecho en CDMX</span>
+          <span class="badge label">100% mexicana</span>
+          <span class="badge label">Dibujado a mano</span>
+          <span class="badge label">Hecho en CDMX</span>
         </div>
       </div>
       <div class="bros" aria-label="Los cuatro hermanos">
@@ -364,24 +356,87 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
     </div>
   </section>
 
-  <section class="info dark dots" id="entregas">
+  <section class="bruno dark grain halftone-amarillo" id="bruno">
     <div class="wrap">
-      <div class="sec-head"><div><h2>ENTREGAS Y PAGOS</h2></div></div>
+      <div class="bruno-art">
+        <img src="img/logo-cabeza.svg" alt="Bruno, el perro de Llantas Lentas, con la lengua de fuera" width="380" height="482" loading="lazy">
+      </div>
+      <div>
+        <span class="label" style="color:var(--amarillo)">Trail dogs</span>
+        <h2 class="big">Nunca ruedas <span class="mk">solo</span></h2>
+        <div class="txt">
+          <p>El perro del logo es <em>Bruno</em>. Acompañaba al cerro a uno de nosotros cuando empezó a rodar solo, y hoy es el embajador oficial de la marca.</p>
+          <p>En el MTB hay una tradición muy chida: los <em>trail dogs</em>, los perros que acompañan a sus riders en cada rodada. ¿Ruedas con tu perro? Etiquétanos en Instagram y lo subimos.</p>
+        </div>
+        <div class="ctas">
+          <a class="btn btn-rosa" href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">Etiquétanos @llantaslentas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="light" id="niveles">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="label">Del verde al doble negro</span>
+          <h2>¿En qué pista andas?</h2>
+          <p>Celebramos el primer salto igual que el mejor tiempo de la pista. Aquí cabe todo nivel.</p>
+        </div>
+      </div>
+      <div class="trail">
+        <div class="lvl">
+          <svg class="ic" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="#1E5631" stroke="#0D0D0D" stroke-width="3"/></svg>
+          <span class="label">Verde · Fácil</span>
+          <h3>Primeras bajadas</h3>
+          <p>Chicken line sin pena. Todos empezamos bien tronco.</p>
+        </div>
+        <div class="lvl">
+          <svg class="ic" viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="5" width="30" height="30" fill="#1B4DFF" stroke="#0D0D0D" stroke-width="3"/></svg>
+          <span class="label">Azul · Intermedio</span>
+          <h3>Ya trazas fino</h3>
+          <p>Raíces, peraltes y tus primeros bunny hops.</p>
+        </div>
+        <div class="lvl">
+          <svg class="ic" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 L37 20 L20 37 L3 20 Z" fill="#0D0D0D"/></svg>
+          <span class="label">Negro · Difícil</span>
+          <h3>Soltar frenos</h3>
+          <p>Saltos, drops y la línea buena. Al tiro en cada bajada.</p>
+        </div>
+        <div class="lvl">
+          <svg class="ic" viewBox="0 0 64 40" aria-hidden="true" style="width:70px"><path d="M18 3 L35 20 L18 37 L1 20 Z" fill="#0D0D0D"/><path d="M46 3 L63 20 L46 37 L29 20 Z" fill="#0D0D0D"/></svg>
+          <span class="label">Doble negro · Experto</span>
+          <h3>A tope</h3>
+          <p>Enduro, DH y cronómetro. Todo el respeto al que va por el podio.</p>
+        </div>
+      </div>
+      <p class="trail-note">De la chicken line al podio.</p>
+    </div>
+  </section>
+
+  <section class="info dark" id="entregas">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="label">Así te llega</span><h2>Entregas y pagos</h2></div></div>
       <div class="cols">
         <div class="box">
-          <span class="status mono">Disponible</span>
-          <h3>ENTREGA EN CDMX</h3>
-          <p>Entregamos en la zona de Santa Fe y alrededores. Acordamos el punto y la hora por WhatsApp.</p>
+          <span class="status label">Disponible</span>
+          <h3>Entrega en CDMX</h3>
+          <p>Santa Fe y alrededores. Cuadramos punto y hora por WhatsApp.</p>
         </div>
         <div class="box">
-          <span class="status soon mono">Muy pronto</span>
-          <h3>ENVÍOS A TODO MÉXICO</h3>
-          <p>Estamos trabajando para llegar a todo el país. Síguenos en Instagram para enterarte cuando arranquemos.</p>
+          <span class="status soon label">Muy pronto</span>
+          <h3>Envíos a todo México</h3>
+          <p>Estamos trabajando para llegar a todo el país. Síguenos en Instagram para enterarte.</p>
         </div>
         <div class="box">
-          <span class="status mono">Disponible</span>
-          <h3>PAGA COMO QUIERAS</h3>
-          <p>Paga en línea con tarjeta o Mercado Pago, por transferencia o en efectivo al momento de la entrega.</p>
+          <span class="status label">Disponible</span>
+          <h3>Paga como quieras</h3>
+          <p>Tarjeta o Mercado Pago, transferencia, o efectivo al momento de la entrega.</p>
+        </div>
+        <div class="box">
+          <span class="status gift label">De regalo</span>
+          <h3>Stickers de Bruno</h3>
+          <p>Tu playera llega en bolsa cerrada con stickers troquelados de Bruno para tu casco o tu bici.</p>
         </div>
       </div>
     </div>
@@ -389,10 +444,10 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
 
   <section class="contact" id="contacto">
     <div class="wrap">
-      <div class="brand"><img src="img/logo-completo.svg" alt="" width="180" height="165"><h2>RUEDA CON NOSOTROS</h2></div>
+      <div class="brand"><img src="img/logo-completo.svg" alt="" width="190" height="174" loading="lazy"><h2>¿Ya se armó la rodada, compas?</h2></div>
       <div class="links">
-        <a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener"><span>Instagram</span><span class="mono">@llantaslentas</span></a>
-        <div><span>WhatsApp</span><span class="mono" id="waShow"></span></div>
+        <a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener"><span>Instagram</span><span class="label">@llantaslentas</span></a>
+        <div><span>WhatsApp</span><span class="label" id="waShow"></span></div>
       </div>
     </div>
   </section>
@@ -400,21 +455,21 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Llantas Lentas · Ciudad de México</span>
-    <span class="mono">Todos empezamos en verde</span>
+    <span>© 2026 Llantas Lentas · Ciudad de México 🇲🇽</span>
+    <span class="mk">Hecho en el cerro, aprobado por Bruno.</span>
   </div>
 </footer>
 
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" hidden aria-label="Carrito de compras">
   <header>
-    <h2>TU CARRITO</h2>
+    <h2>Tu carrito</h2>
     <button class="x" id="closeCart" type="button" aria-label="Cerrar carrito">✕</button>
   </header>
   <div class="items" id="items"></div>
   <div class="totals" id="totals" hidden>
-    <div class="line"><span>Subtotal</span><span class="mono" id="subtotal"></span></div>
-    <div class="line"><span>Entrega</span><span class="mono" id="shipping"></span></div>
+    <div class="line"><span>Subtotal</span><span id="subtotal"></span></div>
+    <div class="line"><span>Entrega</span><span id="shipping"></span></div>
     <div class="line grand"><span>TOTAL</span><span id="total"></span></div>
     <div><label for="custName">Tu nombre</label><input id="custName" autocomplete="name" placeholder="Ej. Ana López"></div>
     <div><label for="payMethod">¿Cómo quieres pagar?</label>
@@ -424,9 +479,9 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
         <option>Efectivo en la entrega</option>
       </select>
     </div>
-    <a class="btn btn-pink btn-block" id="waBtn" href="#" target="_blank" rel="noopener">PEDIR POR WHATSAPP</a>
+    <a class="btn btn-rosa btn-block" id="waBtn" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
     <textarea class="order-text" id="orderText" readonly aria-label="Texto del pedido"></textarea>
-    <button class="btn btn-line btn-block" id="copyBtn" type="button">COPIAR PEDIDO</button>
+    <button class="btn btn-line btn-block" id="copyBtn" type="button">Copiar pedido</button>
     <p class="note" id="waNote"></p>
   </div>
 </aside>
@@ -440,14 +495,15 @@ const TIENDA = {
   costoEntrega: 0,                 // 0 = "Se acuerda por WhatsApp"
 };
 /* Cada producto puede llevar:
-   imagen:    "img/playera1.jpg"  -> tu foto (si no, se ve un dibujo de ejemplo)
-   linkPago:  "https://mpago.la/xxxx" -> link de pago de Mercado Pago o Stripe; muestra el botón "COMPRAR YA" */
+   imagenes:  ["img/foto1.webp", ...] -> tus fotos (la primera es la principal)
+   linkPago:  "https://mpago.la/xxxx" -> link de pago de Mercado Pago; muestra el botón "COMPRAR YA" */
 const PRODUCTOS = [
-  {id:"gallo", nombre:"Playera del Gallo", cat:"Playeras", precio:399, tallas:["CH","M","G","XG"], etiqueta:"PRIMER DISEÑO",
-   desc:"Playera negra para rodar, con el gallo ilustrado a mano en la espalda y el logo al frente.",
+  {id:"chicken-line", nombre:"Playera Chicken Line", cat:"Playeras", precio:399, tallas:["S","M","L","XL"], etiqueta:"Drop 01",
+   desc:"Para los que hoy tocan chicken line y mañana sueltan frenos. Gallo ilustrado a mano en la espalda y logo al frente.",
+   regalo:"Incluye stickers de Bruno de regalo.",
    imagenes:["img/playera-gallo-3.webp","img/playera-gallo-2.webp","img/playera-gallo-4.webp","img/playera-gallo-1.webp"], linkPago:""}
 ];
-/* Tarjeta de "próximamente" al final de la tienda (pon proximamente:false para quitarla) */
+/* Tarjeta de "próximo drop" al final de la tienda (pon false para quitarla) */
 const PROXIMAMENTE = true;
 /* ============================================== */
 
@@ -455,46 +511,45 @@ const $ = s => document.querySelector(s);
 const fmt = n => new Intl.NumberFormat("es-MX",{style:"currency",currency:TIENDA.moneda,maximumFractionDigits:0}).format(n);
 const waPretty = n => "+" + n.replace(/^(\d{2})(\d)?(\d{2})(\d{4})(\d{4})$/, (m,a,b,c,d,e)=>`${a} ${b?b+" ":""}${c} ${d} ${e}`);
 
-function teeSVG(color){
-  const ink = color==="#0d0d0d" ? "#ffffff" : "#0d0d0d";
-  const edge = color==="#0d0d0d" ? "#ffffff" : "#0d0d0d";
-  return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 L42 10 Q50 18 58 10 L70 16 L90 32 L79 46 L70 40 L70 90 L30 90 L30 40 L21 46 L10 32 Z" fill="${color}" stroke="${edge}" stroke-width="3" stroke-linejoin="round"/>
-  <circle cx="50" cy="52" r="13" fill="none" stroke="${ink}" stroke-width="4" stroke-dasharray="5 3"/><circle cx="50" cy="52" r="4" fill="#b5216b"/></svg>`;
+function teeSVG(){
+  return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 L42 10 Q50 18 58 10 L70 16 L90 32 L79 46 L70 40 L70 90 L30 90 L30 40 L21 46 L10 32 Z" fill="#0D0D0D" stroke="#F5F5F0" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="52" r="5" fill="#D92378"/></svg>`;
 }
 
 let cart = [];
-try { cart = JSON.parse(localStorage.getItem("ll-cart-v2")||"[]"); } catch(e){ cart = []; }
+try { cart = JSON.parse(localStorage.getItem("ll-cart-v3")||"[]"); } catch(e){ cart = []; }
 cart = cart.filter(i=>PRODUCTOS.some(p=>p.id===i.id));
-const save = () => { try { localStorage.setItem("ll-cart-v2", JSON.stringify(cart)); } catch(e){} };
+const save = () => { try { localStorage.setItem("ll-cart-v3", JSON.stringify(cart)); } catch(e){} };
 const tallaSel = {};
 const imgSel = {};
 let filtro = "Todo";
 const precioDe = id => PRODUCTOS.find(x=>x.id===id).precio;
+const corto = n => n.replace(/^Playera\s+/,"");
 
 function renderFilters(){
   const cats = [...new Set(PRODUCTOS.map(p=>p.cat))];
   if(cats.length<2){ $("#filters").innerHTML=""; return; }
-  $("#filters").innerHTML = ["Todo",...cats].map(c=>`<button type="button" class="chip" aria-pressed="${c===filtro}" data-cat="${c}">${c}</button>`).join("");
+  $("#filters").innerHTML = ["Todo",...cats].map(c=>`<button type="button" class="chip label" aria-pressed="${c===filtro}" data-cat="${c}">${c}</button>`).join("");
 }
 function tallaDe(p){ return p.tallas ? (tallaSel[p.id]||p.tallas[1]||p.tallas[0]) : ""; }
 function renderGrid(){
   const list = PRODUCTOS.filter(p=>filtro==="Todo"||p.cat===filtro);
   $("#grid").innerHTML = list.map(p=>{
-    const fotos = p.imagenes || (p.imagen ? [p.imagen] : []);
+    const fotos = p.imagenes || [];
     const sel = Math.min(imgSel[p.id]||0, Math.max(fotos.length-1,0));
-    const img = fotos.length ? `<img src="${fotos[sel]}" alt="${p.nombre}, foto ${sel+1}">` : teeSVG(p.color) + `<span class="sample mono">Foto de ejemplo</span>`;
+    const img = fotos.length ? `<img src="${fotos[sel]}" alt="${p.nombre}, foto ${sel+1}">` : teeSVG() + `<span class="sample label">Foto de ejemplo</span>`;
     const thumbs = fotos.length>1 ? `<div class="thumbs" role="group" aria-label="Fotos">${fotos.map((f,i)=>`<button type="button" data-img="${i}" data-id="${p.id}" aria-pressed="${i===sel}" aria-label="Ver foto ${i+1}"><img src="${f}" alt="" loading="lazy"></button>`).join("")}</div>` : "";
-    const tallas = p.tallas ? `<div class="sizes" role="group" aria-label="Talla">${p.tallas.map(t=>`<button type="button" data-size="${t}" data-id="${p.id}" aria-pressed="${tallaDe(p)===t}">${t}</button>`).join("")}</div>` : "";
-    const buy = p.linkPago ? `<a class="buy" href="${p.linkPago}" target="_blank" rel="noopener">COMPRAR YA</a>` : "";
+    const tallas = p.tallas ? `<div class="sizes" role="group" aria-label="Talla"><span class="label">Talla</span>${p.tallas.map(t=>`<button type="button" data-size="${t}" data-id="${p.id}" aria-pressed="${tallaDe(p)===t}">${t}</button>`).join("")}</div>` : "";
+    const buy = p.linkPago ? `<a class="buy" href="${p.linkPago}" target="_blank" rel="noopener">Comprar ya</a>` : "";
     return `<article class="card">
       <div class="img">${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}${img}</div>${thumbs}
       <div class="body">
         <h3>${p.nombre}</h3>
         <p class="desc">${p.desc}</p>
+        ${p.regalo?`<p class="gift">${p.regalo}</p>`:""}
         ${tallas}
-        <div class="row"><span class="price">${fmt(p.precio)} <small>MXN</small></span><span class="acts">${buy}<button type="button" class="add" data-add="${p.id}">AGREGAR</button></span></div>
+        <div class="row"><span class="price">${fmt(p.precio)} <small>MXN</small></span><span class="acts">${buy}<button type="button" class="add" data-add="${p.id}">Agregar</button></span></div>
       </div></article>`;
-  }).join("") + (PROXIMAMENTE && filtro==="Todo" ? `<div class="soon-card"><span class="mono" style="color:var(--pink-soft)">Próximamente</span><h3>MÁS DISEÑOS EN CAMINO</h3><p>Estamos dibujando los que siguen. Síguenos para enterarte primero.</p><a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">@llantaslentas →</a></div>` : "");
+  }).join("") + (PROXIMAMENTE && filtro==="Todo" ? `<div class="soon-card"><span class="label">Próximo drop</span><h3>Ya estamos dibujando lo que sigue</h3><p>Al tiro en Instagram, compas: ahí avisamos primero.</p><a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">@llantaslentas →</a></div>` : "");
 }
 function addToCart(id){
   const p = PRODUCTOS.find(x=>x.id===id);
@@ -502,14 +557,14 @@ function addToCart(id){
   const key = id+"|"+talla;
   const ex = cart.find(i=>i.key===key);
   ex ? ex.qty++ : cart.push({key,id,talla,qty:1});
-  save(); renderCart(); toast(`¡${p.nombre}${talla?" ("+talla+")":""} al carrito!`);
+  save(); renderCart(); toast(`¡Al tiro! ${corto(p.nombre)}${talla?" ("+talla+")":""} al carrito 🤘`);
 }
 function sums(){ const sub = cart.reduce((a,i)=>a+precioDe(i.id)*i.qty,0); return {sub, env:TIENDA.costoEntrega}; }
 function renderCart(){
   $("#cartCount").textContent = cart.reduce((a,i)=>a+i.qty,0);
-  if(!cart.length){ $("#items").innerHTML = `<div class="empty"><b>Ruedas vacío.</b>Agrega una playera para empezar.</div>`; $("#totals").hidden = true; return; }
+  if(!cart.length){ $("#items").innerHTML = `<div class="empty"><b>Ruedas vacío, pana.</b>Agrega una playera y armamos tu pedido.</div>`; $("#totals").hidden = true; return; }
   $("#items").innerHTML = cart.map(i=>{const p=PRODUCTOS.find(x=>x.id===i.id); return `<div class="item">
-    <span class="t">${p.nombre}</span><span class="mono">${fmt(p.precio*i.qty)}</span>
+    <span class="t">${p.nombre}</span><span class="p">${fmt(p.precio*i.qty)}</span>
     <span class="m">${i.talla?"Talla "+i.talla+" · ":""}${fmt(p.precio)} c/u</span>
     <span class="qty"><button type="button" data-dec="${i.key}" aria-label="Quitar uno">−</button><span>${i.qty}</span><button type="button" data-inc="${i.key}" aria-label="Agregar uno">+</button></span>
   </div>`}).join("");
@@ -524,12 +579,12 @@ function updateOrder(){
   const {sub,env} = sums();
   const nombre = $("#custName").value.trim();
   const lines = cart.map(i=>{const p=PRODUCTOS.find(x=>x.id===i.id);return `• ${i.qty} x ${p.nombre}${i.talla?" (talla "+i.talla+")":""} – ${fmt(p.precio*i.qty)}`});
-  const txt = `¡Hola Llantas Lentas! Quiero hacer un pedido${nombre?" (soy "+nombre+")":""}:\n${lines.join("\n")}\nTotal: ${fmt(sub+env)}\nPago: ${$("#payMethod").value}\nEntrega: CDMX`;
+  const txt = `¡Qué onda, Llantas Lentas! 🤘 Quiero hacer un pedido${nombre?" (soy "+nombre+")":""}:\n${lines.join("\n")}\nTotal: ${fmt(sub+env)}\nPago: ${$("#payMethod").value}\nEntrega: CDMX`;
   $("#orderText").value = txt;
   $("#waBtn").href = `https://wa.me/${TIENDA.whatsapp}?text=${encodeURIComponent(txt)}`;
 }
 function openCart(o){ $("#drawer").hidden = !o; $("#scrim").hidden = !o; if(o) $("#closeCart").focus(); }
-let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.hidden=false; clearTimeout(tt); tt=setTimeout(()=>t.hidden=true,1800); }
+let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.hidden=false; clearTimeout(tt); tt=setTimeout(()=>t.hidden=true,2000); }
 
 document.addEventListener("click", e=>{
   const t = e.target.closest("button"); if(!t) return;
