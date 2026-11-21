@@ -76,6 +76,7 @@ a{color:inherit}
 .hero h1 .l2{display:block;color:var(--pink);text-shadow:5px 5px 0 var(--white)}
 .word-h1 img{display:block;width:min(100%,620px);height:auto;filter:drop-shadow(6px 6px 0 var(--pink))}
 .spray{font-family:var(--tag);color:var(--pink-soft);font-size:clamp(1.4rem,3.4vw,2.1rem);transform:rotate(-4deg);display:inline-block;margin-top:24px}
+.hero h1.hero-tag{font-family:var(--tag);font-weight:400;font-size:clamp(2.4rem,6.5vw,4.6rem);line-height:1.05;color:var(--white);text-shadow:4px 4px 0 var(--pink);transform:rotate(-3deg);margin:28px 0 26px;display:block;max-width:12ch}
 .hero p.lead{max-width:44ch;color:#c9c9c9;font-size:1.1rem;margin-top:14px}
 .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;font-family:var(--display);font-size:.95rem;text-decoration:none;border:3px solid var(--black);transition:transform .12s, box-shadow .12s}
@@ -84,7 +85,7 @@ a{color:inherit}
 .btn:hover{transform:translate(-2px,-2px)}
 .btn:active{transform:translate(3px,3px);box-shadow:0 0 0 transparent}
 .badge-logo{width:100%;max-width:400px;justify-self:center;position:relative}
-.badge-logo img{width:100%;height:auto;filter:drop-shadow(12px 12px 0 var(--pink));transform:rotate(-6deg);transition:transform .3s}
+.badge-logo img{width:100%;height:auto;transform:rotate(-6deg);transition:transform .3s}
 .badge-logo:hover img{transform:rotate(4deg) scale(1.03)}
 .badge-logo .stamp{position:absolute;right:-4px;bottom:6%;background:var(--white);color:var(--black);font-family:var(--display);font-size:.8rem;padding:6px 10px;border:3px solid var(--black);transform:rotate(8deg)}
 .zig{height:18px;background:linear-gradient(135deg,var(--white) 25%,transparent 25%) -9px 0/18px 18px,linear-gradient(225deg,var(--white) 25%,transparent 25%) -9px 0/18px 18px;background-color:var(--pink)}
@@ -248,8 +249,7 @@ footer .wrap{padding-block:24px;display:flex;justify-content:space-between;gap:1
   <div class="wrap">
     <div>
       <span class="kicker">MTB · CDMX · 100% MEXICANA</span>
-      <h1 class="word-h1"><img src="img/logo-letras.svg" alt="Llantas Lentas" width="620" height="184"></h1>
-      <span class="spray">Todos empezamos por algo.</span>
+      <h1 class="spray hero-tag">Todos empezamos por algo.</h1>
       <p class="lead">Playeras de diseño propio para la banda que rueda en la montaña. Dibujadas a mano, sin IA, por cuatro hermanos que aman la bici.</p>
       <div class="ctas">
         <a class="btn btn-pink" href="#tienda">VER PLAYERAS</a>
