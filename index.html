@@ -92,12 +92,21 @@ a{color:inherit}
 .btn-line{background:transparent;color:var(--fg,var(--hueso));border-color:currentColor;box-shadow:5px 5px 0 var(--rosa)}
 .btn:hover{transform:translate(-2px,-2px)}
 .btn:active{transform:translate(3px,3px);box-shadow:0 0 0 transparent}
-.badge-logo{width:100%;max-width:400px;justify-self:center;position:relative}
+.badge-logo{width:100%;max-width:400px;justify-self:center;position:relative;display:flex;flex-direction:column;align-items:center}
 .badge-logo img{width:100%;height:auto;transform:rotate(-6deg);transition:transform .3s}
 .badge-logo:hover img{transform:rotate(3deg) scale(1.03)}
-.stamp{position:absolute;right:-4px;bottom:4%;background:var(--amarillo);color:var(--asfalto);font-family:var(--display);font-size:1.15rem;letter-spacing:.04em;padding:5px 12px 3px;border:3px solid var(--asfalto);transform:rotate(7deg)}
+.stamp{position:relative;align-self:flex-end;margin:-4px 4% 0 0;background:var(--amarillo);color:var(--asfalto);font-family:var(--display);font-size:1.15rem;letter-spacing:.04em;padding:5px 12px 3px;border:3px solid var(--asfalto);transform:rotate(7deg)}
 .hero .torn{position:relative;z-index:3;margin-bottom:-1px}
-@media (max-width:780px){.hero .wrap{grid-template-columns:1fr;padding-top:32px}.badge-logo{max-width:250px;order:-1;justify-self:start;margin-left:8px}.hero::after{background:rgba(13,13,13,.68)}}
+@media (max-width:780px){
+  .hero .wrap{grid-template-columns:1fr;padding-block:28px 34px;gap:26px;text-align:center;justify-items:center}
+  .badge-logo{max-width:270px;order:-1;justify-self:center}
+  .badge-logo .stamp{align-self:center;margin:14px 0 0}
+  .hero::after{background:rgba(13,13,13,.68)}
+  .hero h1{margin:18px 0 16px}
+  .hero p.lead{margin-inline:auto}
+  .hero .ctas{justify-content:center;flex-direction:column;align-items:center}
+  .hero .ctas .btn{width:100%;max-width:320px}
+}
 
 /* Cinta de frases insignia */
 .ticker{background:var(--rosa);color:var(--hueso);overflow:hidden;border-bottom:3px solid var(--asfalto);white-space:nowrap}
@@ -182,12 +191,11 @@ section{padding-block:76px}
 .bruno .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:52px;align-items:center;position:relative;z-index:3}
 .bruno-art{position:relative;max-width:380px;width:100%;justify-self:center}
 .bruno-art img{width:100%;height:auto;transform:rotate(-5deg);filter:drop-shadow(10px 10px 0 var(--amarillo))}
-.bruno-art .stamp{bottom:2%;right:0}
 .bruno h2 .mk{color:var(--amarillo);font-size:.8em;display:inline-block;transform:rotate(-4deg)}
 .bruno .txt{display:grid;gap:14px;margin-top:22px;max-width:56ch;font-size:1.05rem;color:#dcdcd6}
 .bruno .txt em{color:var(--amarillo);font-style:normal;font-weight:700}
 .bruno .ctas{margin-top:26px}
-@media (max-width:780px){.bruno .wrap{grid-template-columns:1fr;gap:28px}.bruno-art{max-width:230px;justify-self:start}}
+@media (max-width:780px){.bruno .wrap{grid-template-columns:1fr;gap:28px}.bruno-art{max-width:240px;justify-self:center}}
 
 /* Niveles */
 .trail{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -198,7 +206,27 @@ section{padding-block:76px}
 .lvl .label{color:var(--asfalto)}
 .trail-note{font-family:var(--tag);font-size:clamp(1.6rem,3.6vw,2.3rem);color:var(--rosa);margin-top:36px;transform:rotate(-1.5deg)}
 @media (max-width:860px){.trail{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:460px){.trail{grid-template-columns:1fr}}
+/* Ajustes para celular */
+@media (max-width:600px){
+  section{padding-block:56px}
+  .sec-head{margin-bottom:24px}
+  .trail{gap:12px}
+  .lvl{padding:14px;gap:6px;box-shadow:4px 4px 0 var(--asfalto)}
+  .lvl .ic{width:34px;height:34px}
+  .lvl h3{font-size:1.45rem}
+  .lvl p{font-size:.86rem}
+  .trail-note{margin-top:28px}
+  .box{padding:18px}
+  .bros{gap:12px}
+  .bro{font-size:2.6rem}
+  .gallery{gap:14px}
+  .gallery figure{border-width:4px}
+  .gallery figure:nth-child(even){transform:rotate(1.5deg) translateY(10px)}
+  .cerro .phrase{margin-top:36px}
+  .contact .brand{flex-direction:column;align-items:center;text-align:center;gap:18px}
+  .contact .brand img{width:170px}
+  footer .wrap{flex-direction:column;text-align:center;gap:8px}
+}
 
 /* Entregas y pagos */
 .info .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
