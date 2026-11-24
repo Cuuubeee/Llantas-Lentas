@@ -150,6 +150,8 @@ section{padding-block:76px}
 .sizes button[aria-pressed="true"]{border-color:var(--asfalto);color:var(--hueso);background:var(--asfalto)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
 .price{font-family:var(--display);font-size:2rem;color:var(--asfalto);font-variant-numeric:tabular-nums;line-height:1}
+.price-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.launch{background:var(--rosa);color:var(--hueso);padding:3px 8px 2px;font-size:.66rem;transform:rotate(-2deg)}
 .price small{font-family:var(--body);font-size:.7rem;font-weight:700;color:var(--gris)}
 .acts{display:flex;gap:8px}
 .add{background:var(--rosa);color:var(--hueso);border:2px solid var(--asfalto);padding:6px 16px 4px;font-family:var(--display);font-size:1.2rem;letter-spacing:.04em;box-shadow:3px 3px 0 var(--asfalto)}
@@ -527,7 +529,7 @@ const TIENDA = {
    imagenes:  ["img/foto1.webp", ...] -> tus fotos (la primera es la principal)
    linkPago:  "https://mpago.la/xxxx" -> link de pago de Mercado Pago; muestra el botón "COMPRAR YA" */
 const PRODUCTOS = [
-  {id:"chicken-line", nombre:"Playera Chicken Line", cat:"Playeras", precio:399, tallas:["S","M","L","XL"], etiqueta:"Drop 01",
+  {id:"chicken-line", nombre:"Playera Chicken Line", cat:"Playeras", precio:450, nota:"Precio de lanzamiento", tallas:["S","M","L","XL"], etiqueta:"Drop 01",
    desc:"Para los que hoy tocan chicken line y mañana sueltan frenos. Gallo ilustrado a mano en la espalda y logo al frente.",
    regalo:"Incluye stickers de Bruno de regalo.",
    imagenes:["img/playera-gallo-3.webp","img/playera-gallo-2.webp","img/playera-gallo-4.webp","img/playera-gallo-1.webp"], linkPago:""}
@@ -576,7 +578,7 @@ function renderGrid(){
         <p class="desc">${p.desc}</p>
         ${p.regalo?`<p class="gift">${p.regalo}</p>`:""}
         ${tallas}
-        <div class="row"><span class="price">${fmt(p.precio)} <small>MXN</small></span><span class="acts">${buy}<button type="button" class="add" data-add="${p.id}">Agregar</button></span></div>
+        <div class="row"><span class="price-wrap">${p.nota?`<span class="launch label">${p.nota}</span>`:""}<span class="price">${fmt(p.precio)} <small>MXN</small></span></span><span class="acts">${buy}<button type="button" class="add" data-add="${p.id}">Agregar</button></span></div>
       </div></article>`;
   }).join("") + (PROXIMAMENTE && filtro==="Todo" ? `<div class="soon-card"><span class="label">Próximo drop</span><h3>Ya estamos dibujando lo que sigue</h3><p>Al tiro en Instagram, compas: ahí avisamos primero.</p><a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">@llantaslentas →</a></div>` : "");
 }
