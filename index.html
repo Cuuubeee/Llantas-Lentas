@@ -174,21 +174,23 @@ section{padding-block:76px}
 .cerro .phrase{font-family:var(--tag);color:var(--amarillo);font-size:clamp(1.6rem,3.6vw,2.3rem);margin-top:48px;transform:rotate(-1.5deg)}
 @media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
 
-/* Historia */
-.story .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:start}
-.story .txt{display:grid;gap:14px;margin-top:22px;max-width:60ch;font-size:1.05rem}
-.story .txt strong{color:var(--rosa)}
-.bros{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.bro{aspect-ratio:1;max-width:100%;border:4px solid var(--asfalto);display:grid;place-items:center;font-family:var(--display);font-size:3.4rem;box-shadow:6px 6px 0 var(--asfalto);position:relative}
-.bro span{position:absolute;bottom:8px;left:10px;font-family:var(--body);font-weight:700;font-size:.65rem;letter-spacing:.1em}
-.bro:nth-child(1){background:var(--rosa);color:var(--hueso);transform:rotate(-2deg)}
-.bro:nth-child(2){background:var(--asfalto);color:var(--hueso);transform:rotate(1.5deg);box-shadow:6px 6px 0 var(--rosa)}
-.bro:nth-child(3){background:var(--amarillo);color:var(--asfalto);transform:rotate(1deg)}
-.bro:nth-child(4){background:var(--asfalto);color:var(--amarillo);transform:rotate(-1.5deg);box-shadow:6px 6px 0 var(--amarillo)}
-.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-.badge{border:2px solid var(--asfalto);padding:5px 12px}
+/* Historia (compacta) */
+.story{padding-block:48px}
+.story .wrap{display:grid;grid-template-columns:1.4fr .6fr;gap:40px;align-items:center}
+.story h2{font-size:clamp(2.2rem,5vw,3rem)}
+.story .txt{display:grid;gap:10px;margin-top:12px;max-width:64ch;font-size:.98rem;color:var(--gris)}
+.story .txt strong{color:var(--asfalto)}
+.story-side{display:grid;gap:16px;justify-items:start}
+.bros{display:flex;gap:10px}
+.bro{width:62px;height:62px;border-radius:50%;border:3px solid var(--asfalto);display:grid;place-items:center;font-family:var(--display);font-size:1.3rem}
+.bro:nth-child(1){background:var(--rosa);color:var(--hueso)}
+.bro:nth-child(2){background:var(--asfalto);color:var(--hueso)}
+.bro:nth-child(3){background:var(--amarillo);color:var(--asfalto)}
+.bro:nth-child(4){background:var(--asfalto);color:var(--amarillo)}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{border:2px solid var(--asfalto);padding:4px 10px;font-size:.66rem}
 .badge:nth-child(2){background:var(--asfalto);color:var(--hueso)}
-@media (max-width:780px){.story .wrap{grid-template-columns:1fr;gap:36px}}
+@media (max-width:780px){.story .wrap{grid-template-columns:1fr;gap:22px}.story-side{justify-items:start}}
 
 /* Bruno */
 .bruno .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:52px;align-items:center;position:relative;z-index:3}
@@ -220,8 +222,6 @@ section{padding-block:76px}
   .lvl p{font-size:.86rem}
   .trail-note{margin-top:28px}
   .box{padding:18px}
-  .bros{gap:12px}
-  .bro{font-size:2.6rem}
   .gallery{gap:14px}
   .gallery figure{border-width:4px}
   .gallery figure:nth-child(even){transform:rotate(1.5deg) translateY(10px)}
@@ -362,49 +362,6 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
     </div>
   </section>
 
-  <section class="story light" id="historia">
-    <div class="wrap">
-      <div>
-        <span class="label" style="color:var(--rosa)">Nuestra historia</span>
-        <h2 class="big">Cuatro hermanos y un cerro</h2>
-        <div class="txt">
-          <p>Llantas Lentas es una marca mexicana de deportes extremos. Arrancamos con el MTB Enduro y Downhill, grabando nuestras rodadas para compartirlas con la banda.</p>
-          <p>El nombre tiene su ironía, pero la idea es <strong>progreso constante con buena vibra</strong>. No importa si hoy es tu primera bajada o si quieres romper el cronómetro: todos empezamos lento, y lo que nos une en el cerro son las ganas de intentarlo.</p>
-          <p>Cada ilustración la dibujamos nosotros, sin IA, mezclando graffiti, retro ochentero y calle mexicana.</p>
-        </div>
-        <div class="badges">
-          <span class="badge label">100% mexicana</span>
-          <span class="badge label">Dibujado a mano</span>
-          <span class="badge label">Hecho en CDMX</span>
-        </div>
-      </div>
-      <div class="bros" aria-label="Los cuatro hermanos">
-        <div class="bro">H1<span>HERMANO 1</span></div>
-        <div class="bro">H2<span>HERMANO 2</span></div>
-        <div class="bro">H3<span>HERMANO 3</span></div>
-        <div class="bro">H4<span>HERMANO 4</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bruno dark grain halftone-amarillo" id="bruno">
-    <div class="wrap">
-      <div class="bruno-art">
-        <img src="img/logo-cabeza.svg" alt="Bruno, el perro de Llantas Lentas, con la lengua de fuera" width="380" height="477" loading="lazy">
-      </div>
-      <div>
-        <span class="label" style="color:var(--amarillo)">Trail dogs</span>
-        <h2 class="big">Nunca ruedas <span class="mk">solo</span></h2>
-        <div class="txt">
-          <p>El perro del logo es <em>Bruno</em>. Acompañaba al cerro a uno de nosotros cuando empezó a rodar solo, y hoy es el embajador oficial de la marca.</p>
-          <p>En el MTB hay una tradición muy chida: los <em>trail dogs</em>, los perros que acompañan a sus riders en cada rodada. ¿Ruedas con tu perro? Etiquétanos en Instagram y lo subimos.</p>
-        </div>
-        <div class="ctas">
-          <a class="btn btn-rosa" href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">Etiquétanos @llantaslentas</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="light" id="niveles">
     <div class="wrap">
@@ -442,6 +399,52 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
         </div>
       </div>
       <p class="trail-note">De la chicken line al podio.</p>
+    </div>
+  </section>
+
+  <section class="bruno dark grain halftone-amarillo" id="bruno">
+    <div class="wrap">
+      <div class="bruno-art">
+        <img src="img/logo-cabeza.svg" alt="Bruno, el perro de Llantas Lentas, con la lengua de fuera" width="380" height="477" loading="lazy">
+      </div>
+      <div>
+        <span class="label" style="color:var(--amarillo)">Trail dogs</span>
+        <h2 class="big">Nunca ruedas <span class="mk">solo</span></h2>
+        <div class="txt">
+          <p>El perro del logo es <em>Bruno</em>. Acompañaba al cerro a uno de nosotros cuando empezó a rodar solo, y hoy es el embajador oficial de la marca.</p>
+          <p>En el MTB hay una tradición muy chida: los <em>trail dogs</em>, los perros que acompañan a sus riders en cada rodada. ¿Ruedas con tu perro? Etiquétanos en Instagram y lo subimos.</p>
+        </div>
+        <div class="ctas">
+          <a class="btn btn-rosa" href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">Etiquétanos @llantaslentas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="story light" id="historia">
+    <div class="wrap">
+      <div>
+        <span class="label" style="color:var(--rosa)">Nuestra historia</span>
+        <h2>Cuatro hermanos y un cerro</h2>
+        <div class="txt">
+          <p>Llantas Lentas es una marca mexicana de deportes extremos. Arrancamos con el MTB Enduro y Downhill, grabando nuestras rodadas para compartirlas con la banda. La idea es <strong>progreso constante con buena vibra</strong>: todos empezamos lento, y lo que nos une en el cerro son las ganas de intentarlo.</p>
+          <p>Cada ilustración la dibujamos nosotros, sin IA, mezclando graffiti, retro ochentero y calle mexicana.</p>
+        </div>
+      </div>
+      <div class="story-side">
+        <div class="bros" aria-label="Los cuatro hermanos">
+          <div class="bro">H1</div>
+          <div class="bro">H2</div>
+          <div class="bro">H3</div>
+          <div class="bro">H4</div>
+        </div>
+        <div class="badges">
+          <span class="badge label">100% mexicana</span>
+          <span class="badge label">Dibujado a mano</span>
+          <span class="badge label">Hecho en CDMX</span>
+        </div>
+      </div>
     </div>
   </section>
 
