@@ -148,6 +148,14 @@ section{padding-block:76px}
 .sizes .label{color:var(--gris);margin-right:4px}
 .sizes button{border:2px solid #d4d4cc;background:transparent;color:var(--asfalto);padding:3px 10px;font-weight:700;font-size:.82rem}
 .sizes button[aria-pressed="true"]{border-color:var(--asfalto);color:var(--hueso);background:var(--asfalto)}
+.swatches{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.swatches .label{color:var(--gris)}
+.swatches .label b{color:var(--asfalto)}
+.sw-row{display:flex;gap:10px}
+.sw{width:34px;height:34px;border-radius:50%;background:var(--sw);border:2px solid #b9b9b2;padding:0;box-shadow:inset 0 0 0 3px var(--hueso)}
+.sw[aria-pressed="true"]{border:3px solid var(--asfalto);box-shadow:inset 0 0 0 3px var(--hueso),3px 3px 0 var(--rosa)}
+.f-main.f-empty{display:grid;place-items:center;cursor:default}
+.f-main.f-empty svg{width:62%;height:auto}
 .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
 .price{font-family:var(--display);font-size:2rem;color:var(--asfalto);font-variant-numeric:tabular-nums;line-height:1}
 .price-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
@@ -689,7 +697,12 @@ const PRODUCTOS = [
   {id:"chicken-line", nombre:"Playera Chicken Line", cat:"Playeras", precio:450, nota:"Precio de lanzamiento", tallas:["S","M","L","XL"], etiqueta:"Drop 01",
    desc:"Para los que hoy tocan chicken line y mañana sueltan frenos. Hecha para rodar, sudar y llenarse de polvo.",
    regalo:"Incluye 2 stickers del logo de regalo, uno de ellos tornasol.",
-   imagenes:["img/chicken-espalda.webp","img/chicken-collage.webp","img/chicken-bosque.webp","img/chicken-frente.webp"],
+   /* Colores: cada uno con sus fotos. Si un color no tiene fotos, se ve un dibujo con "Foto en camino". */
+   colores:[
+     {id:"negro",  nombre:"Negro",  hex:"#0D0D0D", imagenes:["img/chicken-espalda.webp","img/chicken-collage.webp","img/chicken-bosque.webp","img/chicken-frente.webp"]},
+     {id:"blanco", nombre:"Blanco", hex:"#F5F5F0", imagenes:[]},
+     {id:"verde",  nombre:"Verde",  hex:"#1E5631", imagenes:[]}
+   ],
    tela:"",        // ej. "Dry-fit 100% poliéster, transpirable"
    corte:"",       // ej. "Regular" u "Oversize"
    medidas:null,   // ej. {S:{largo:68,ancho:48}, M:{largo:71,ancho:51}, L:{largo:74,ancho:54}, XL:{largo:77,ancho:57}}
@@ -709,16 +722,19 @@ const $ = s => document.querySelector(s);
 const fmt = n => new Intl.NumberFormat("es-MX",{style:"currency",currency:TIENDA.moneda,maximumFractionDigits:0}).format(n);
 const waPretty = n => "+" + n.replace(/^(\d{2})(\d)?(\d{2})(\d{4})(\d{4})$/, (m,a,b,c,d,e)=>`${a} ${b?b+" ":""}${c} ${d} ${e}`);
 
-function teeSVG(){
-  return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 L42 10 Q50 18 58 10 L70 16 L90 32 L79 46 L70 40 L70 90 L30 90 L30 40 L21 46 L10 32 Z" fill="#0D0D0D" stroke="#F5F5F0" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="52" r="5" fill="#D92378"/></svg>`;
+function teeSVG(hex){
+  const fill = hex || "#0D0D0D";
+  const edge = fill.toUpperCase()==="#F5F5F0" ? "#0D0D0D" : "#F5F5F0";
+  return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 16 L42 10 Q50 18 58 10 L70 16 L90 32 L79 46 L70 40 L70 90 L30 90 L30 40 L21 46 L10 32 Z" fill="${fill}" stroke="${edge}" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="52" r="6" fill="#D92378"/></svg>`;
 }
 
 let cart = [];
-try { cart = JSON.parse(localStorage.getItem("ll-cart-v3")||"[]"); } catch(e){ cart = []; }
+try { cart = JSON.parse(localStorage.getItem("ll-cart-v4")||"[]"); } catch(e){ cart = []; }
 cart = cart.filter(i=>PRODUCTOS.some(p=>p.id===i.id));
-const save = () => { try { localStorage.setItem("ll-cart-v3", JSON.stringify(cart)); } catch(e){} };
+const save = () => { try { localStorage.setItem("ll-cart-v4", JSON.stringify(cart)); } catch(e){} };
 const tallaSel = {};
 const imgSel = {};
+const colorSel = {};
 let filtro = "Todo";
 const precioDe = id => PRODUCTOS.find(x=>x.id===id).precio;
 const corto = n => n.replace(/^Playera\s+/,"");
@@ -729,14 +745,17 @@ function renderFilters(){
   $("#filters").innerHTML = ["Todo",...cats].map(c=>`<button type="button" class="chip label" aria-pressed="${c===filtro}" data-cat="${c}">${c}</button>`).join("");
 }
 function tallaDe(p){ return p.tallas ? (tallaSel[p.id]||p.tallas[1]||p.tallas[0]) : ""; }
-function fotosDe(p){ return p.imagenes || []; }
+function colorDe(p){ return p.colores ? (p.colores.find(c=>c.id===colorSel[p.id]) || p.colores[0]) : null; }
+function fotosDe(p){ const c = colorDe(p); return c ? (c.imagenes||[]) : (p.imagenes || []); }
 function productHTML(p, modo){
   const fotos = fotosDe(p);
   const sel = Math.min(imgSel[p.id]||0, Math.max(fotos.length-1,0));
   const main = fotos.length ? `<button type="button" class="f-main" data-zoom="${sel}" data-id="${p.id}" aria-label="Ver foto en grande">
       <img src="${fotos[sel]}" alt="${p.nombre}, foto ${sel+1}">
       ${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}
-      <span class="zoom-hint label">⤢ Toca para ampliar</span></button>` : `<div class="f-main">${teeSVG()}</div>`;
+      <span class="zoom-hint label">⤢ Toca para ampliar</span></button>` : `<div class="f-main f-empty">${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}${teeSVG(colorDe(p)?.hex)}<span class="zoom-hint label">Foto en camino</span></div>`;
+  const col = colorDe(p);
+  const colores = p.colores ? `<div class="swatches" role="group" aria-label="Color"><span class="label">Color: <b>${col.nombre}</b></span><div class="sw-row">${p.colores.map(c=>`<button type="button" class="sw" data-color="${c.id}" data-id="${p.id}" aria-pressed="${c.id===col.id}" aria-label="${c.nombre}" title="${c.nombre}" style="--sw:${c.hex}"></button>`).join("")}</div></div>` : "";
   const thumbs = fotos.length>1 ? `<div class="thumbs" role="group" aria-label="Fotos">${fotos.map((f,i)=>`<button type="button" data-img="${i}" data-id="${p.id}" aria-pressed="${i===sel}" aria-label="Ver foto ${i+1}"><img src="${f}" alt="" loading="lazy"></button>`).join("")}</div>` : "";
   const tallas = p.tallas ? `<div class="sizes" role="group" aria-label="Talla"><span class="label">Talla</span>${p.tallas.map(t=>`<button type="button" data-size="${t}" data-id="${p.id}" aria-pressed="${tallaDe(p)===t}">${t}</button>`).join("")}</div>` : "";
   const buy = p.linkPago ? `<a class="btn btn-dark" href="${p.linkPago}" target="_blank" rel="noopener">Comprar ya</a>` : "";
@@ -752,6 +771,7 @@ function productHTML(p, modo){
       <span class="price">${fmt(p.precio)} <small>MXN</small></span>
       <p class="desc">${p.desc}</p>
       ${p.regalo?`<p class="gift">${p.regalo}</p>`:""}
+      ${colores}
       ${tallas}
       <div class="f-acts"><button type="button" class="btn btn-rosa" data-add="${p.id}">Agregar al carrito</button>${buy}</div>
       <div class="f-more">
@@ -765,7 +785,7 @@ function productHTML(p, modo){
 }
 function cardHTML(p){
   const fotos = fotosDe(p);
-  const img = fotos.length ? `<img src="${fotos[0]}" alt="${p.nombre}">` : teeSVG();
+  const img = fotos.length ? `<img src="${fotos[0]}" alt="${p.nombre}">` : teeSVG(colorDe(p)?.hex);
   return `<article class="card"><button type="button" class="img" data-open="${p.id}" aria-label="Ver ${p.nombre}">${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}${img}</button>
     <div class="body"><h3>${p.nombre}</h3><p class="desc">${p.desc}</p>
     <div class="row"><span class="price-wrap">${p.nota?`<span class="launch label">${p.nota}</span>`:""}<span class="price">${fmt(p.precio)} <small>MXN</small></span></span><button type="button" class="add" data-open="${p.id}">Ver playera</button></div></div></article>`;
@@ -817,10 +837,11 @@ function renderRiders(){
 function addToCart(id){
   const p = PRODUCTOS.find(x=>x.id===id);
   const talla = tallaDe(p);
-  const key = id+"|"+talla;
+  const color = colorDe(p)?.nombre || "";
+  const key = id+"|"+color+"|"+talla;
   const ex = cart.find(i=>i.key===key);
-  ex ? ex.qty++ : cart.push({key,id,talla,qty:1});
-  save(); renderCart(); toast(`¡Al tiro! ${corto(p.nombre)}${talla?" ("+talla+")":""} al carrito 🤘`);
+  ex ? ex.qty++ : cart.push({key,id,color,talla,qty:1});
+  save(); renderCart(); toast(`¡Al tiro! ${corto(p.nombre)} ${[color,talla].filter(Boolean).join(" ")} al carrito 🤘`);
 }
 function sums(){ const sub = cart.reduce((a,i)=>a+precioDe(i.id)*i.qty,0); return {sub, env:TIENDA.costoEntrega}; }
 function renderCart(){
@@ -828,7 +849,7 @@ function renderCart(){
   if(!cart.length){ $("#items").innerHTML = `<div class="empty"><b>Ruedas vacío, pana.</b>Agrega una playera y armamos tu pedido.</div>`; $("#totals").hidden = true; return; }
   $("#items").innerHTML = cart.map(i=>{const p=PRODUCTOS.find(x=>x.id===i.id); return `<div class="item">
     <span class="t">${p.nombre}</span><span class="p">${fmt(p.precio*i.qty)}</span>
-    <span class="m">${i.talla?"Talla "+i.talla+" · ":""}${fmt(p.precio)} c/u</span>
+    <span class="m">${i.color?i.color+" · ":""}${i.talla?"Talla "+i.talla+" · ":""}${fmt(p.precio)} c/u</span>
     <span class="qty"><button type="button" data-dec="${i.key}" aria-label="Quitar uno">−</button><span>${i.qty}</span><button type="button" data-inc="${i.key}" aria-label="Agregar uno">+</button></span>
   </div>`}).join("");
   const {sub,env} = sums();
@@ -841,7 +862,7 @@ function renderCart(){
 function updateOrder(){
   const {sub,env} = sums();
   const nombre = $("#custName").value.trim();
-  const lines = cart.map(i=>{const p=PRODUCTOS.find(x=>x.id===i.id);return `• ${i.qty} x ${p.nombre}${i.talla?" (talla "+i.talla+")":""} – ${fmt(p.precio*i.qty)}`});
+  const lines = cart.map(i=>{const p=PRODUCTOS.find(x=>x.id===i.id);return `• ${i.qty} x ${p.nombre}${i.color?" "+i.color:""}${i.talla?" (talla "+i.talla+")":""} – ${fmt(p.precio*i.qty)}`});
   const txt = `¡Qué onda, Llantas Lentas! 🤘 Quiero hacer un pedido${nombre?" (soy "+nombre+")":""}:\n${lines.join("\n")}\nTotal: ${fmt(sub+env)}\nPago: ${$("#payMethod").value}\nEntrega: CDMX`;
   $("#orderText").value = txt;
   $("#waBtn").href = `https://wa.me/${TIENDA.whatsapp}?text=${encodeURIComponent(txt)}`;
@@ -857,6 +878,7 @@ document.addEventListener("click", e=>{
   else if(t.dataset.open){ openProduct(t.dataset.open); }
   else if(t.dataset.legal){ openLegal(t.dataset.legal); }
   else if(t.dataset.size){ tallaSel[t.dataset.id]=t.dataset.size; renderGrid(); }
+  else if(t.dataset.color){ colorSel[t.dataset.id]=t.dataset.color; imgSel[t.dataset.id]=0; renderGrid(); }
   else if(t.dataset.add){ addToCart(t.dataset.add); }
   else if(t.dataset.inc){ cart.find(i=>i.key===t.dataset.inc).qty++; save(); renderCart(); }
   else if(t.dataset.dec){ const i=cart.find(i=>i.key===t.dataset.dec); i.qty--; if(i.qty<=0) cart=cart.filter(x=>x!==i); save(); renderCart(); }
