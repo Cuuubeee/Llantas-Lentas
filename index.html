@@ -187,6 +187,61 @@ section{padding-block:76px}
 .badge:nth-child(2){background:var(--asfalto);color:var(--hueso)}
 @media (max-width:780px){.story .wrap{grid-template-columns:1fr;gap:22px}.story-side{justify-items:start}}
 
+/* Producto destacado */
+.grid.one{display:grid;grid-template-columns:1fr;gap:28px}
+.feature{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;background:var(--hueso);color:var(--asfalto);border:3px solid var(--asfalto);box-shadow:8px 8px 0 var(--asfalto);padding:24px}
+.feature.in-modal{border:0;box-shadow:none;padding:0}
+.f-media{display:grid;gap:12px;min-width:0}
+.f-main{position:relative;display:block;width:100%;padding:0;border:3px solid var(--asfalto);background:var(--asfalto);aspect-ratio:4/5;max-width:100%;overflow:hidden;cursor:zoom-in}
+.f-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.f-main:hover img{transform:scale(1.03)}
+.f-main .sticker{top:14px;left:-3px}
+.zoom-hint{position:absolute;right:10px;bottom:10px;background:var(--hueso);color:var(--asfalto);padding:4px 9px;border:2px solid var(--asfalto)}
+.f-media .thumbs{padding:0;gap:8px}
+.f-media .thumbs button{width:72px;height:90px}
+.f-info{display:flex;flex-direction:column;gap:12px;min-width:0}
+.f-info .launch{align-self:flex-start}
+.f-info h3{font-size:clamp(2.6rem,5vw,3.6rem)}
+.f-info .price{font-size:2.6rem}
+.f-info .desc{color:var(--gris);font-size:1rem}
+.f-acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.f-acts .btn-rosa{border-color:var(--asfalto);box-shadow:5px 5px 0 var(--asfalto)}
+.btn-dark{background:var(--asfalto);color:var(--hueso);border-color:var(--asfalto);box-shadow:5px 5px 0 var(--rosa)}
+.f-more{display:grid;border-top:3px solid var(--asfalto);margin-top:8px}
+.f-more details{border-bottom:2px solid #d4d4cc}
+.f-more summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:12px 2px;font-family:var(--display);font-size:1.4rem;letter-spacing:.03em}
+.f-more summary::-webkit-details-marker{display:none}
+.f-more summary::after{content:"+";font-family:var(--body);font-weight:700;color:var(--rosa);font-size:1.4rem}
+.f-more details[open] summary::after{content:"–"}
+.f-more .dt{padding:0 2px 14px;color:var(--gris);font-size:.94rem;display:grid;gap:8px}
+.f-more .dt b{color:var(--asfalto)}
+.size-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.size-table th,.size-table td{text-align:left;padding:6px 8px;border-bottom:1px solid #d4d4cc}
+.size-table th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--asfalto)}
+.tip{font-size:.85rem}
+.grid.one .soon-card{min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding:20px 24px}
+.grid.one .soon-card h3{font-size:2rem}
+.card .img{cursor:pointer;padding:0;width:100%}
+@media (max-width:860px){.feature{grid-template-columns:1fr;gap:22px;padding:14px}.f-media .thumbs button{width:60px;height:75px}}
+
+/* Modal de producto */
+.pm{position:fixed;inset:0;z-index:25;background:rgba(0,0,0,.75);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.pm-box{position:relative;background:var(--hueso);color:var(--asfalto);border:3px solid var(--asfalto);box-shadow:8px 8px 0 var(--rosa);width:min(1000px,100%);max-height:100%;overflow:auto;padding:24px}
+.pm-x{position:sticky;top:0;float:right;z-index:2;background:var(--hueso);color:var(--asfalto);border-color:var(--asfalto)}
+
+/* Galería en pantalla completa */
+.lb{position:fixed;inset:0;z-index:40;background:var(--asfalto);display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  padding:calc(env(safe-area-inset-top,0px) + 56px) max(8px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 48px) max(8px,env(safe-area-inset-left,0px))}
+.lb-stage{height:100%;min-width:0;display:grid;place-items:center;overflow:hidden}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border:4px solid var(--hueso);cursor:zoom-in;transition:transform .25s;touch-action:pan-y}
+.lb-stage img.zoomed{transform:scale(2.4);cursor:zoom-out;touch-action:none}
+.lb-btn{background:var(--hueso);color:var(--asfalto);border:3px solid var(--asfalto);width:46px;height:46px;font-size:1.6rem;line-height:1;display:grid;place-items:center;box-shadow:3px 3px 0 var(--rosa)}
+.lb-prev,.lb-next{margin:0 8px}
+.lb-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:max(12px,env(safe-area-inset-right,0px))}
+.lb-count{position:absolute;top:calc(env(safe-area-inset-top,0px) + 22px);left:max(16px,env(safe-area-inset-left,0px));color:var(--amarillo)}
+.lb-hint{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);left:0;right:0;text-align:center;color:var(--gris-claro)}
+@media (max-width:620px){.lb{grid-template-columns:1fr}.lb-prev,.lb-next{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);margin:0}.lb-prev{left:16px}.lb-next{right:16px}.lb-hint{bottom:calc(env(safe-area-inset-bottom,0px) + 22px)}}
+
 /* Riders colaboradores */
 .rider-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,300px));gap:28px}
 .rider{background:var(--asfalto);color:var(--hueso);border:3px solid var(--asfalto);box-shadow:7px 7px 0 var(--rosa);display:flex;flex-direction:column}
@@ -545,6 +600,17 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
     <p class="note" id="waNote"></p>
   </div>
 </aside>
+<div class="pm" id="pm" hidden role="dialog" aria-modal="true" aria-label="Detalle de la playera">
+  <div class="pm-box"><button class="x pm-x" id="pmClose" type="button" aria-label="Cerrar">✕</button><div id="pmBody"></div></div>
+</div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fotos en grande">
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Cerrar">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Foto anterior">‹</button>
+  <div class="lb-stage"><img id="lbImg" src="" alt=""></div>
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Foto siguiente">›</button>
+  <span class="lb-count label" id="lbCount"></span>
+  <span class="lb-hint label">Toca la foto para hacer zoom</span>
+</div>
 <div class="toast" id="toast" hidden></div>
 
 <script>
@@ -561,7 +627,11 @@ const PRODUCTOS = [
   {id:"chicken-line", nombre:"Playera Chicken Line", cat:"Playeras", precio:450, nota:"Precio de lanzamiento", tallas:["S","M","L","XL"], etiqueta:"Drop 01",
    desc:"Para los que hoy tocan chicken line y mañana sueltan frenos. Gallo ilustrado a mano en la espalda y logo al frente.",
    regalo:"Incluye stickers de Bruno de regalo.",
-   imagenes:["img/playera-gallo-3.webp","img/playera-gallo-2.webp","img/playera-gallo-4.webp","img/playera-gallo-1.webp"], linkPago:""}
+   imagenes:["img/chicken-espalda.webp","img/chicken-collage.webp","img/chicken-bosque.webp","img/chicken-frente.webp"],
+   tela:"",        // ej. "Dry-fit 100% poliéster, transpirable"
+   corte:"",       // ej. "Regular" u "Oversize"
+   medidas:null,   // ej. {S:{largo:68,ancho:48}, M:{largo:71,ancho:51}, L:{largo:74,ancho:54}, XL:{largo:77,ancho:57}}
+   linkPago:""}
 ];
 /* Tarjeta de "próximo drop" al final de la tienda (pon false para quitarla) */
 const PROXIMAMENTE = true;
@@ -598,26 +668,79 @@ function renderFilters(){
   $("#filters").innerHTML = ["Todo",...cats].map(c=>`<button type="button" class="chip label" aria-pressed="${c===filtro}" data-cat="${c}">${c}</button>`).join("");
 }
 function tallaDe(p){ return p.tallas ? (tallaSel[p.id]||p.tallas[1]||p.tallas[0]) : ""; }
+function fotosDe(p){ return p.imagenes || []; }
+function productHTML(p, modo){
+  const fotos = fotosDe(p);
+  const sel = Math.min(imgSel[p.id]||0, Math.max(fotos.length-1,0));
+  const main = fotos.length ? `<button type="button" class="f-main" data-zoom="${sel}" data-id="${p.id}" aria-label="Ver foto en grande">
+      <img src="${fotos[sel]}" alt="${p.nombre}, foto ${sel+1}">
+      ${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}
+      <span class="zoom-hint label">⤢ Toca para ampliar</span></button>` : `<div class="f-main">${teeSVG()}</div>`;
+  const thumbs = fotos.length>1 ? `<div class="thumbs" role="group" aria-label="Fotos">${fotos.map((f,i)=>`<button type="button" data-img="${i}" data-id="${p.id}" aria-pressed="${i===sel}" aria-label="Ver foto ${i+1}"><img src="${f}" alt="" loading="lazy"></button>`).join("")}</div>` : "";
+  const tallas = p.tallas ? `<div class="sizes" role="group" aria-label="Talla"><span class="label">Talla</span>${p.tallas.map(t=>`<button type="button" data-size="${t}" data-id="${p.id}" aria-pressed="${tallaDe(p)===t}">${t}</button>`).join("")}</div>` : "";
+  const buy = p.linkPago ? `<a class="btn btn-dark" href="${p.linkPago}" target="_blank" rel="noopener">Comprar ya</a>` : "";
+  const m = p.medidas;
+  const guia = m ? `<table class="size-table"><thead><tr><th>Talla</th><th>Largo (cm)</th><th>Ancho (cm)</th></tr></thead><tbody>${Object.entries(m).map(([t,v])=>`<tr><td>${t}</td><td>${v.largo}</td><td>${v.ancho}</td></tr>`).join("")}</tbody></table><p class="tip">Mide una playera que te quede bien, extendida: el ancho es de axila a axila.</p>`
+    : `<p>Estamos midiendo cada talla para publicar la guía. Mientras, mándanos DM con tu estatura y cómo te gusta que te quede, y te ayudamos a elegir, pana.</p>`;
+  const tela = (p.tela||p.corte) ? `<details><summary>Tela y corte</summary><div class="dt">${p.tela?`<p><b>Tela:</b> ${p.tela}</p>`:""}${p.corte?`<p><b>Corte:</b> ${p.corte}</p>`:""}</div></details>` : "";
+  return `<article class="feature ${modo||""}">
+    <div class="f-media">${main}${thumbs}</div>
+    <div class="f-info">
+      ${p.nota?`<span class="launch label">${p.nota}</span>`:""}
+      <h3>${p.nombre}</h3>
+      <span class="price">${fmt(p.precio)} <small>MXN</small></span>
+      <p class="desc">${p.desc}</p>
+      ${p.regalo?`<p class="gift">${p.regalo}</p>`:""}
+      ${tallas}
+      <div class="f-acts"><button type="button" class="btn btn-rosa" data-add="${p.id}">Agregar al carrito</button>${buy}</div>
+      <div class="f-more">
+        <details><summary>Guía de tallas</summary><div class="dt">${guia}</div></details>
+        ${tela}
+        <details><summary>Entrega y pago</summary><div class="dt"><p>Entrega en CDMX (Santa Fe y alrededores); cuadramos punto y hora por WhatsApp. Pagas con tarjeta o Mercado Pago, transferencia o efectivo al entregar.</p></div></details>
+      </div>
+    </div>
+  </article>`;
+}
+function cardHTML(p){
+  const fotos = fotosDe(p);
+  const img = fotos.length ? `<img src="${fotos[0]}" alt="${p.nombre}">` : teeSVG();
+  return `<article class="card"><button type="button" class="img" data-open="${p.id}" aria-label="Ver ${p.nombre}">${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}${img}</button>
+    <div class="body"><h3>${p.nombre}</h3><p class="desc">${p.desc}</p>
+    <div class="row"><span class="price-wrap">${p.nota?`<span class="launch label">${p.nota}</span>`:""}<span class="price">${fmt(p.precio)} <small>MXN</small></span></span><button type="button" class="add" data-open="${p.id}">Ver playera</button></div></div></article>`;
+}
+const soonHTML = () => `<div class="soon-card"><span class="label">Próximo drop</span><h3>Ya estamos dibujando lo que sigue</h3><p>Al tiro en Instagram, compas: ahí avisamos primero.</p><a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">@llantaslentas →</a></div>`;
+let modalId = null;
 function renderGrid(){
   const list = PRODUCTOS.filter(p=>filtro==="Todo"||p.cat===filtro);
-  $("#grid").innerHTML = list.map(p=>{
-    const fotos = p.imagenes || [];
-    const sel = Math.min(imgSel[p.id]||0, Math.max(fotos.length-1,0));
-    const img = fotos.length ? `<img src="${fotos[sel]}" alt="${p.nombre}, foto ${sel+1}">` : teeSVG() + `<span class="sample label">Foto de ejemplo</span>`;
-    const thumbs = fotos.length>1 ? `<div class="thumbs" role="group" aria-label="Fotos">${fotos.map((f,i)=>`<button type="button" data-img="${i}" data-id="${p.id}" aria-pressed="${i===sel}" aria-label="Ver foto ${i+1}"><img src="${f}" alt="" loading="lazy"></button>`).join("")}</div>` : "";
-    const tallas = p.tallas ? `<div class="sizes" role="group" aria-label="Talla"><span class="label">Talla</span>${p.tallas.map(t=>`<button type="button" data-size="${t}" data-id="${p.id}" aria-pressed="${tallaDe(p)===t}">${t}</button>`).join("")}</div>` : "";
-    const buy = p.linkPago ? `<a class="buy" href="${p.linkPago}" target="_blank" rel="noopener">Comprar ya</a>` : "";
-    return `<article class="card">
-      <div class="img">${p.etiqueta?`<span class="sticker">${p.etiqueta}</span>`:""}${img}</div>${thumbs}
-      <div class="body">
-        <h3>${p.nombre}</h3>
-        <p class="desc">${p.desc}</p>
-        ${p.regalo?`<p class="gift">${p.regalo}</p>`:""}
-        ${tallas}
-        <div class="row"><span class="price-wrap">${p.nota?`<span class="launch label">${p.nota}</span>`:""}<span class="price">${fmt(p.precio)} <small>MXN</small></span></span><span class="acts">${buy}<button type="button" class="add" data-add="${p.id}">Agregar</button></span></div>
-      </div></article>`;
-  }).join("") + (PROXIMAMENTE && filtro==="Todo" ? `<div class="soon-card"><span class="label">Próximo drop</span><h3>Ya estamos dibujando lo que sigue</h3><p>Al tiro en Instagram, compas: ahí avisamos primero.</p><a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">@llantaslentas →</a></div>` : "");
+  const grid = $("#grid");
+  if(list.length===1){
+    grid.className = "grid one";
+    grid.innerHTML = productHTML(list[0]) + (PROXIMAMENTE ? soonHTML() : "");
+  } else {
+    grid.className = "grid";
+    grid.innerHTML = list.map(cardHTML).join("") + (PROXIMAMENTE && filtro==="Todo" ? soonHTML() : "");
+  }
+  if(modalId){ $("#pmBody").innerHTML = productHTML(PRODUCTOS.find(x=>x.id===modalId),"in-modal"); }
 }
+function openProduct(id){ modalId=id; $("#pm").hidden=false; lockScroll(true); renderGrid(); $("#pmClose").focus(); }
+function closeProduct(){ modalId=null; $("#pm").hidden=true; lockScroll(false); }
+function lockScroll(on){ document.documentElement.style.overflow = on ? "hidden" : ""; }
+
+/* Galería en pantalla completa */
+let lb = {fotos:[], i:0, nombre:""};
+function openLightbox(id, i){
+  const p = PRODUCTOS.find(x=>x.id===id); lb = {fotos:fotosDe(p), i, nombre:p.nombre};
+  $("#lb").hidden=false; lockScroll(true); showLb(); $("#lbClose").focus();
+}
+function showLb(){
+  const img=$("#lbImg"); img.classList.remove("zoomed"); img.style.transformOrigin="";
+  img.src=lb.fotos[lb.i]; img.alt=`${lb.nombre}, foto ${lb.i+1} de ${lb.fotos.length}`;
+  $("#lbCount").textContent=`${lb.i+1} / ${lb.fotos.length}`;
+  const many = lb.fotos.length>1; $("#lbPrev").hidden=!many; $("#lbNext").hidden=!many;
+}
+function stepLb(d){ lb.i=(lb.i+d+lb.fotos.length)%lb.fotos.length; showLb(); }
+function closeLightbox(){ $("#lb").hidden=true; if(!modalId) lockScroll(false); }
+function setOrigin(img, x, y){ const r=img.getBoundingClientRect(); img.style.transformOrigin=`${((x-r.left)/r.width*100).toFixed(1)}% ${((y-r.top)/r.height*100).toFixed(1)}%`; }
 function renderRiders(){
   const cards = RIDERS.map(r=>`<article class="rider">
       <div class="ph">${r.foto?`<img src="${r.foto}" alt="${r.nombre} rodando" loading="lazy">`:""}${r.ejemplo?`<span class="ex label">Ejemplo</span>`:""}</div>
@@ -668,6 +791,8 @@ document.addEventListener("click", e=>{
   const t = e.target.closest("button"); if(!t) return;
   if(t.dataset.cat){ filtro=t.dataset.cat; renderFilters(); renderGrid(); }
   else if(t.dataset.img){ imgSel[t.dataset.id]=+t.dataset.img; renderGrid(); }
+  else if(t.dataset.zoom){ openLightbox(t.dataset.id, +t.dataset.zoom); }
+  else if(t.dataset.open){ openProduct(t.dataset.open); }
   else if(t.dataset.size){ tallaSel[t.dataset.id]=t.dataset.size; renderGrid(); }
   else if(t.dataset.add){ addToCart(t.dataset.add); }
   else if(t.dataset.inc){ cart.find(i=>i.key===t.dataset.inc).qty++; save(); renderCart(); }
@@ -676,7 +801,22 @@ document.addEventListener("click", e=>{
 $("#openCart").onclick = ()=>openCart(true);
 $("#closeCart").onclick = ()=>openCart(false);
 $("#scrim").onclick = ()=>openCart(false);
-document.addEventListener("keydown", e=>{ if(e.key==="Escape") openCart(false); });
+document.addEventListener("keydown", e=>{
+  if(!$("#lb").hidden){ if(e.key==="Escape") closeLightbox(); else if(e.key==="ArrowRight") stepLb(1); else if(e.key==="ArrowLeft") stepLb(-1); return; }
+  if(e.key==="Escape"){ if(modalId) closeProduct(); else openCart(false); }
+});
+$("#lbClose").onclick = closeLightbox;
+$("#lbPrev").onclick = ()=>stepLb(-1);
+$("#lbNext").onclick = ()=>stepLb(1);
+$("#lb").addEventListener("click", e=>{ if(e.target.id==="lb" || e.target.classList.contains("lb-stage")) closeLightbox(); });
+$("#lbImg").addEventListener("click", e=>{ const img=e.currentTarget; if(!img.classList.contains("zoomed")) setOrigin(img,e.clientX,e.clientY); img.classList.toggle("zoomed"); });
+$("#lbImg").addEventListener("mousemove", e=>{ const img=e.currentTarget; if(img.classList.contains("zoomed")) setOrigin(img,e.clientX,e.clientY); });
+let tx=null;
+$("#lbImg").addEventListener("touchstart", e=>{ tx=e.touches[0].clientX; }, {passive:true});
+$("#lbImg").addEventListener("touchmove", e=>{ const img=e.currentTarget; if(img.classList.contains("zoomed")){ e.preventDefault(); setOrigin(img,e.touches[0].clientX,e.touches[0].clientY); } }, {passive:false});
+$("#lbImg").addEventListener("touchend", e=>{ const img=e.currentTarget; if(tx===null||img.classList.contains("zoomed")) return; const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50) stepLb(dx<0?1:-1); tx=null; });
+$("#pmClose").onclick = closeProduct;
+$("#pm").addEventListener("click", e=>{ if(e.target.id==="pm") closeProduct(); });
 $("#custName").addEventListener("input", updateOrder);
 $("#payMethod").addEventListener("change", updateOrder);
 $("#copyBtn").onclick = ()=>{
