@@ -180,14 +180,9 @@ section{padding-block:76px}
 .story h2{font-size:clamp(2.2rem,5vw,3rem)}
 .story .txt{display:grid;gap:10px;margin-top:12px;max-width:64ch;font-size:.98rem;color:var(--gris)}
 .story .txt strong{color:var(--asfalto)}
-.story-side{display:grid;gap:16px;justify-items:start}
-.bros{display:flex;gap:10px}
-.bro{width:62px;height:62px;border-radius:50%;border:3px solid var(--asfalto);display:grid;place-items:center;font-family:var(--display);font-size:1.3rem}
-.bro:nth-child(1){background:var(--rosa);color:var(--hueso)}
-.bro:nth-child(2){background:var(--asfalto);color:var(--hueso)}
-.bro:nth-child(3){background:var(--amarillo);color:var(--asfalto)}
-.bro:nth-child(4){background:var(--asfalto);color:var(--amarillo)}
-.badges{display:flex;gap:8px;flex-wrap:wrap}
+.story-side{display:grid;gap:16px;justify-items:start;align-self:end}
+.badges{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+@media (max-width:780px){.badges{flex-direction:row;flex-wrap:wrap}}
 .badge{border:2px solid var(--asfalto);padding:4px 10px;font-size:.66rem}
 .badge:nth-child(2){background:var(--asfalto);color:var(--hueso)}
 @media (max-width:780px){.story .wrap{grid-template-columns:1fr;gap:22px}.story-side{justify-items:start}}
@@ -433,12 +428,6 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
         </div>
       </div>
       <div class="story-side">
-        <div class="bros" aria-label="Los cuatro hermanos">
-          <div class="bro">H1</div>
-          <div class="bro">H2</div>
-          <div class="bro">H3</div>
-          <div class="bro">H4</div>
-        </div>
         <div class="badges">
           <span class="badge label">100% mexicana</span>
           <span class="badge label">Dibujado a mano</span>
