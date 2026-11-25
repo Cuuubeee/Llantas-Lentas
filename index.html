@@ -227,7 +227,7 @@ section{padding-block:76px}
 /* Modal de producto */
 .pm{position:fixed;inset:0;z-index:25;background:rgba(0,0,0,.75);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .pm-box{position:relative;background:var(--hueso);color:var(--asfalto);border:3px solid var(--asfalto);box-shadow:8px 8px 0 var(--rosa);width:min(1000px,100%);max-height:100%;overflow:auto;padding:24px}
-.pm-x{position:sticky;top:0;float:right;z-index:2;background:var(--hueso);color:var(--asfalto);border-color:var(--asfalto)}
+.pm .pm-x{position:sticky;top:0;float:right;z-index:2;background:var(--asfalto);color:var(--hueso);border:2px solid var(--asfalto);font-size:1.1rem}
 
 /* Galería en pantalla completa */
 .lb{position:fixed;inset:0;z-index:40;background:var(--asfalto);display:grid;grid-template-columns:auto 1fr auto;align-items:center;
@@ -241,6 +241,18 @@ section{padding-block:76px}
 .lb-count{position:absolute;top:calc(env(safe-area-inset-top,0px) + 22px);left:max(16px,env(safe-area-inset-left,0px));color:var(--amarillo)}
 .lb-hint{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);left:0;right:0;text-align:center;color:var(--gris-claro)}
 @media (max-width:620px){.lb{grid-template-columns:1fr}.lb-prev,.lb-next{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);margin:0}.lb-prev{left:16px}.lb-next{right:16px}.lb-hint{bottom:calc(env(safe-area-inset-bottom,0px) + 22px)}}
+
+/* Políticas */
+.linkish{background:none;border:0;padding:0;color:inherit;text-decoration:underline;text-decoration-color:var(--rosa);text-decoration-thickness:2px;text-underline-offset:3px;font:inherit;font-weight:700}
+.legal-links{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.legal-links .linkish{color:var(--hueso);font-weight:500;font-size:.9rem}
+.legal-box{width:min(760px,100%)}
+.legal-doc{display:grid;gap:12px;max-width:62ch}
+.legal-doc h2{font-size:clamp(2.4rem,6vw,3.4rem)}
+.legal-doc h3{font-size:1.6rem;margin-top:10px}
+.legal-doc p,.legal-doc li{color:var(--gris);font-size:.96rem}
+.legal-doc b{color:var(--asfalto)}
+.legal-doc ul{margin:0;padding-left:20px;display:grid;gap:6px}
 
 /* Riders colaboradores */
 .rider-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,300px));gap:28px}
@@ -458,7 +470,7 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
         <span class="label" style="color:var(--amarillo)">Trail dogs</span>
         <h2 class="big">Nunca ruedas <span class="mk">solo</span></h2>
         <div class="txt">
-          <p>El perro del logo es <em>Bruno</em>. Acompañaba al cerro a uno de nosotros cuando empezó a rodar solo, y hoy es el embajador oficial de la marca.</p>
+          <p>El perro del logo es <em>Bruno</em>. Acompaña al cerro a uno de nosotros desde que empezó a rodar solo, y hoy es el embajador oficial de la marca.</p>
           <p>En el MTB hay una tradición muy chida: los <em>trail dogs</em>, los perros que acompañan a sus riders en cada rodada. ¿Ruedas con tu perro? Etiquétanos en Instagram y lo subimos.</p>
         </div>
         <div class="ctas">
@@ -530,8 +542,8 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
         </div>
         <div class="box">
           <span class="status gift label">De regalo</span>
-          <h3>Stickers de Bruno</h3>
-          <p>Tu playera llega en bolsa cerrada con stickers troquelados de Bruno para tu casco o tu bici.</p>
+          <h3>Stickers de regalo</h3>
+          <p>Cada playera llega con 2 stickers del logo principal, uno de ellos tornasol, para tu casco o tu bici.</p>
         </div>
       </div>
     </div>
@@ -571,6 +583,7 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
 <footer>
   <div class="wrap">
     <span>© 2026 Llantas Lentas · Ciudad de México 🇲🇽</span>
+    <nav class="legal-links" aria-label="Políticas"><button type="button" class="linkish" data-legal="cambios">Cambios y devoluciones</button><button type="button" class="linkish" data-legal="privacidad">Aviso de privacidad</button></nav>
     <span class="mk">Hecho en el cerro, aprobado por Bruno.</span>
   </div>
 </footer>
@@ -603,6 +616,54 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
 <div class="pm" id="pm" hidden role="dialog" aria-modal="true" aria-label="Detalle de la playera">
   <div class="pm-box"><button class="x pm-x" id="pmClose" type="button" aria-label="Cerrar">✕</button><div id="pmBody"></div></div>
 </div>
+<div class="pm" id="legal" hidden role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+  <div class="pm-box legal-box"><button class="x pm-x" id="legalClose" type="button" aria-label="Cerrar">✕</button>
+    <section class="legal-doc" data-doc="cambios" hidden>
+      <span class="label" style="color:var(--rosa)">Políticas</span>
+      <h2 id="legalTitle">Cambios y devoluciones</h2>
+      <p>Queremos que ruedes cómodo. Si tu playera no te quedó o llegó con algún detalle, lo arreglamos.</p>
+      <h3>Cambios de talla</h3>
+      <ul>
+        <li>Tienes <b>15 días naturales</b> desde que recibes tu playera para pedir el cambio.</li>
+        <li>La playera debe estar <b>sin uso, sin lavar y con su etiqueta</b>.</li>
+        <li>El cambio depende de que haya la talla disponible. Si no hay, te ofrecemos otra talla o te devolvemos tu dinero.</li>
+        <li>En CDMX (Santa Fe y alrededores) el cambio no tiene costo: cuadramos punto y hora por WhatsApp.</li>
+      </ul>
+      <h3>Defectos</h3>
+      <ul>
+        <li>Si tu playera llega con un defecto de fábrica (estampado, costuras o tela), te la cambiamos sin costo. Si ya no hay piezas, te devolvemos tu dinero.</li>
+        <li>Avísanos dentro de los 15 días con una foto del detalle.</li>
+      </ul>
+      <h3>Devoluciones de dinero</h3>
+      <ul>
+        <li>Solo devolvemos tu dinero si hay un defecto o si no tenemos la talla para el cambio.</li>
+        <li>Te regresamos el pago por el mismo medio con el que pagaste, en un máximo de 10 días hábiles.</li>
+      </ul>
+      <h3>¿Cómo lo pido?</h3>
+      <p>Escríbenos por WhatsApp al <b class="wa-num"></b> o por DM en Instagram <b>@llantaslentas</b> con tu nombre, la playera y la talla que necesitas.</p>
+    </section>
+    <section class="legal-doc" data-doc="privacidad" hidden>
+      <span class="label" style="color:var(--rosa)">Políticas</span>
+      <h2>Aviso de privacidad</h2>
+      <p><b>Llantas Lentas</b>, con domicilio en la Ciudad de México, es responsable del uso y protección de tus datos personales.</p>
+      <h3>¿Qué datos usamos?</h3>
+      <p>Nombre, número de WhatsApp o teléfono, punto o dirección de entrega, y los productos y tallas de tu pedido. <b>No pedimos ni guardamos datos de tarjeta</b>: los pagos con tarjeta los procesa Mercado Pago.</p>
+      <h3>¿Para qué los usamos?</h3>
+      <ul>
+        <li>Preparar, cobrar y entregar tu pedido.</li>
+        <li>Atender tus dudas, cambios y devoluciones.</li>
+        <li>Opcional: avisarte de nuevos drops. Si no quieres, dínoslo y no te escribimos.</li>
+      </ul>
+      <h3>¿Con quién los compartimos?</h3>
+      <p>No vendemos ni rentamos tus datos. Solo los compartimos cuando es necesario para tu pedido: con Mercado Pago para procesar el pago o con la paquetería cuando hagamos envíos.</p>
+      <h3>Tus derechos</h3>
+      <p>Puedes pedirnos acceder, corregir o borrar tus datos, u oponerte a que los usemos. Escríbenos por WhatsApp al <b class="wa-num"></b> o por DM en Instagram <b>@llantaslentas</b> y te respondemos en un máximo de 20 días hábiles.</p>
+      <h3>Esta página</h3>
+      <p>El carrito se guarda solo en tu navegador. No usamos cookies de rastreo ni publicidad. Tu pedido nos llega únicamente cuando tú lo mandas por WhatsApp.</p>
+      <p class="tip">Si cambiamos este aviso, lo publicaremos aquí. Última actualización: noviembre de 2026.</p>
+    </section>
+  </div>
+</div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fotos en grande">
   <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Cerrar">✕</button>
   <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Foto anterior">‹</button>
@@ -616,7 +677,7 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
 <script>
 /* ============ EDITA AQUÍ TUS DATOS ============ */
 const TIENDA = {
-  whatsapp: "525500000000",        // número con lada, sin + ni espacios (ej. 5215512345678)
+  whatsapp: "525561048802",        // número con lada, sin + ni espacios (ej. 5215512345678)
   moneda: "MXN",
   costoEntrega: 0,                 // 0 = "Se acuerda por WhatsApp"
 };
@@ -626,7 +687,7 @@ const TIENDA = {
 const PRODUCTOS = [
   {id:"chicken-line", nombre:"Playera Chicken Line", cat:"Playeras", precio:450, nota:"Precio de lanzamiento", tallas:["S","M","L","XL"], etiqueta:"Drop 01",
    desc:"Para los que hoy tocan chicken line y mañana sueltan frenos. Hecha para rodar, sudar y llenarse de polvo.",
-   regalo:"Incluye stickers de Bruno de regalo.",
+   regalo:"Incluye 2 stickers del logo de regalo, uno de ellos tornasol.",
    imagenes:["img/chicken-espalda.webp","img/chicken-collage.webp","img/chicken-bosque.webp","img/chicken-frente.webp"],
    tela:"",        // ej. "Dry-fit 100% poliéster, transpirable"
    corte:"",       // ej. "Regular" u "Oversize"
@@ -638,8 +699,7 @@ const PROXIMAMENTE = true;
 /* Riders colaboradores: reemplaza los ejemplos con tus riders reales.
    foto: "img/rider-nombre.webp"  ig: usuario sin @  ejemplo:true muestra la etiqueta "Ejemplo" */
 const RIDERS = [
-  {nombre:"Nombre del rider", ig:"usuario", disciplina:["Enduro","CDMX"], frase:"Lento hoy, a tope mañana.", foto:"img/rodada-2.webp", ejemplo:true},
-  {nombre:"Nombre del rider", ig:"usuario", disciplina:["Downhill","CDMX"], frase:"Puro flow de cerro.", foto:"img/rodada-3.webp", ejemplo:true}
+  {nombre:"Cain Uzi", ig:"cain_uzi", disciplina:["Enduro","Downhill","CDMX"], frase:"Al tiro en la bajada.", foto:"img/rodada-2.webp"}
 ];
 
 /* ============================================== */
@@ -697,6 +757,7 @@ function productHTML(p, modo){
         <details><summary>Guía de tallas</summary><div class="dt">${guia}</div></details>
         ${tela}
         <details><summary>Entrega y pago</summary><div class="dt"><p>Entrega en CDMX (Santa Fe y alrededores); cuadramos punto y hora por WhatsApp. Pagas con tarjeta o Mercado Pago, transferencia o efectivo al entregar.</p></div></details>
+        <details><summary>Cambios</summary><div class="dt"><p>¿No te quedó? Te la cambiamos de talla dentro de los 15 días después de recibirla, sin uso y con etiqueta. <button type="button" class="linkish" data-legal="cambios">Ver política completa</button></p></div></details>
       </div>
     </div>
   </article>`;
@@ -793,6 +854,7 @@ document.addEventListener("click", e=>{
   else if(t.dataset.img){ imgSel[t.dataset.id]=+t.dataset.img; renderGrid(); }
   else if(t.dataset.zoom){ openLightbox(t.dataset.id, +t.dataset.zoom); }
   else if(t.dataset.open){ openProduct(t.dataset.open); }
+  else if(t.dataset.legal){ openLegal(t.dataset.legal); }
   else if(t.dataset.size){ tallaSel[t.dataset.id]=t.dataset.size; renderGrid(); }
   else if(t.dataset.add){ addToCart(t.dataset.add); }
   else if(t.dataset.inc){ cart.find(i=>i.key===t.dataset.inc).qty++; save(); renderCart(); }
@@ -803,7 +865,7 @@ $("#closeCart").onclick = ()=>openCart(false);
 $("#scrim").onclick = ()=>openCart(false);
 document.addEventListener("keydown", e=>{
   if(!$("#lb").hidden){ if(e.key==="Escape") closeLightbox(); else if(e.key==="ArrowRight") stepLb(1); else if(e.key==="ArrowLeft") stepLb(-1); return; }
-  if(e.key==="Escape"){ if(modalId) closeProduct(); else openCart(false); }
+  if(e.key==="Escape"){ if(!$("#legal").hidden) closeLegal(); else if(modalId) closeProduct(); else openCart(false); }
 });
 $("#lbClose").onclick = closeLightbox;
 $("#lbPrev").onclick = ()=>stepLb(-1);
@@ -816,6 +878,11 @@ $("#lbImg").addEventListener("touchstart", e=>{ tx=e.touches[0].clientX; }, {pas
 $("#lbImg").addEventListener("touchmove", e=>{ const img=e.currentTarget; if(img.classList.contains("zoomed")){ e.preventDefault(); setOrigin(img,e.touches[0].clientX,e.touches[0].clientY); } }, {passive:false});
 $("#lbImg").addEventListener("touchend", e=>{ const img=e.currentTarget; if(tx===null||img.classList.contains("zoomed")) return; const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50) stepLb(dx<0?1:-1); tx=null; });
 $("#pmClose").onclick = closeProduct;
+function openLegal(doc){ document.querySelectorAll(".legal-doc").forEach(d=>d.hidden = d.dataset.doc!==doc); $("#legal").hidden=false; lockScroll(true); $("#legal .pm-box").scrollTop=0; $("#legalClose").focus(); }
+function closeLegal(){ $("#legal").hidden=true; if(!modalId) lockScroll(false); }
+$("#legalClose").onclick = closeLegal;
+$("#legal").addEventListener("click", e=>{ if(e.target.id==="legal") closeLegal(); });
+document.querySelectorAll(".wa-num").forEach(el=>el.textContent = waPretty(TIENDA.whatsapp));
 $("#pm").addEventListener("click", e=>{ if(e.target.id==="pm") closeProduct(); });
 $("#custName").addEventListener("input", updateOrder);
 $("#payMethod").addEventListener("change", updateOrder);
