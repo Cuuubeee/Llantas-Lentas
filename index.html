@@ -187,6 +187,27 @@ section{padding-block:76px}
 .badge:nth-child(2){background:var(--asfalto);color:var(--hueso)}
 @media (max-width:780px){.story .wrap{grid-template-columns:1fr;gap:22px}.story-side{justify-items:start}}
 
+/* Riders colaboradores */
+.rider-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,300px));gap:28px}
+.rider{background:var(--asfalto);color:var(--hueso);border:3px solid var(--asfalto);box-shadow:7px 7px 0 var(--rosa);display:flex;flex-direction:column}
+.rider:nth-child(even){box-shadow:7px 7px 0 var(--amarillo)}
+.rider .ph{position:relative;aspect-ratio:4/5;max-width:100%;overflow:hidden;border:5px solid var(--hueso);margin:12px 12px 0}
+.rider .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.rider .ph .sticker{top:10px;left:-2px}
+.rider .ph .ex{position:absolute;bottom:8px;right:8px;background:var(--hueso);color:var(--asfalto);padding:2px 8px}
+.rider .bd{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px}
+.rider h3{font-size:2rem}
+.rider .ig{color:var(--amarillo);font-weight:700;font-size:.9rem;text-decoration:none;align-self:flex-start}
+.rider .ig:hover{text-decoration:underline}
+.rider .tags{display:flex;gap:6px;flex-wrap:wrap}
+.rider .tags span{border:2px solid #4a4a45;padding:2px 8px;font-size:.62rem}
+.rider .quote{font-family:var(--tag);color:var(--rosa);font-size:1.25rem;line-height:1.2;margin-top:4px}
+.rider.join{background:var(--hueso);color:var(--asfalto);border:3px dashed var(--rosa);box-shadow:none;justify-content:center;padding:28px;gap:14px;min-height:300px}
+.rider.join h3{font-size:2.4rem}
+.rider.join p{color:var(--gris)}
+.rider.join .btn{align-self:flex-start;font-size:1.2rem;box-shadow:4px 4px 0 var(--asfalto);border-color:var(--asfalto)}
+@media (max-width:620px){.rider-grid{grid-template-columns:1fr}}
+
 /* Bruno */
 .bruno .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:52px;align-items:center;position:relative;z-index:3}
 .bruno-art{position:relative;max-width:380px;width:100%;justify-self:center}
@@ -289,6 +310,7 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
     </a>
     <nav>
       <a class="hide-sm" href="#tienda">Tienda</a>
+      <a class="hide-sm" href="#riders">Riders</a>
       <a class="hide-sm" href="#bruno">Bruno</a>
       <a class="hide-sm" href="#entregas">Entregas</a>
       <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrito">CARRITO <span class="n" id="cartCount">0</span></button>
@@ -358,6 +380,41 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
   </section>
 
 
+
+  <section class="riders light" id="riders">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="label">La crew</span>
+          <h2>Riders <span class="mk">colaboradores</span></h2>
+          <p>La banda que rueda con la marca, de la chicken line al <span class="mk">podio</span>.</p>
+        </div>
+      </div>
+      <div class="rider-grid" id="riderGrid"></div>
+    </div>
+  </section>
+
+  <section class="bruno dark grain halftone-amarillo" id="bruno">
+    <div class="wrap">
+      <div class="bruno-art">
+        <img src="img/logo-cabeza.svg" alt="Bruno, el perro de Llantas Lentas, con la lengua de fuera" width="380" height="477" loading="lazy">
+      </div>
+      <div>
+        <span class="label" style="color:var(--amarillo)">Trail dogs</span>
+        <h2 class="big">Nunca ruedas <span class="mk">solo</span></h2>
+        <div class="txt">
+          <p>El perro del logo es <em>Bruno</em>. Acompañaba al cerro a uno de nosotros cuando empezó a rodar solo, y hoy es el embajador oficial de la marca.</p>
+          <p>En el MTB hay una tradición muy chida: los <em>trail dogs</em>, los perros que acompañan a sus riders en cada rodada. ¿Ruedas con tu perro? Etiquétanos en Instagram y lo subimos.</p>
+        </div>
+        <div class="ctas">
+          <a class="btn btn-rosa" href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">Etiquétanos @llantaslentas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
   <section class="light" id="niveles">
     <div class="wrap">
       <div class="sec-head">
@@ -397,46 +454,6 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
     </div>
   </section>
 
-  <section class="bruno dark grain halftone-amarillo" id="bruno">
-    <div class="wrap">
-      <div class="bruno-art">
-        <img src="img/logo-cabeza.svg" alt="Bruno, el perro de Llantas Lentas, con la lengua de fuera" width="380" height="477" loading="lazy">
-      </div>
-      <div>
-        <span class="label" style="color:var(--amarillo)">Trail dogs</span>
-        <h2 class="big">Nunca ruedas <span class="mk">solo</span></h2>
-        <div class="txt">
-          <p>El perro del logo es <em>Bruno</em>. Acompañaba al cerro a uno de nosotros cuando empezó a rodar solo, y hoy es el embajador oficial de la marca.</p>
-          <p>En el MTB hay una tradición muy chida: los <em>trail dogs</em>, los perros que acompañan a sus riders en cada rodada. ¿Ruedas con tu perro? Etiquétanos en Instagram y lo subimos.</p>
-        </div>
-        <div class="ctas">
-          <a class="btn btn-rosa" href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">Etiquétanos @llantaslentas</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="story light" id="historia">
-    <div class="wrap">
-      <div>
-        <span class="label" style="color:var(--rosa)">Nuestra historia</span>
-        <h2>Cuatro hermanos y un cerro</h2>
-        <div class="txt">
-          <p>Llantas Lentas es una marca mexicana de deportes extremos. Arrancamos con el MTB Enduro y Downhill, grabando nuestras rodadas para compartirlas con la banda. La idea es <strong>progreso constante con buena vibra</strong>: todos empezamos lento, y lo que nos une en el cerro son las ganas de intentarlo.</p>
-          <p>Cada ilustración la dibujamos nosotros, sin IA, mezclando graffiti, retro ochentero y calle mexicana.</p>
-        </div>
-      </div>
-      <div class="story-side">
-        <div class="badges">
-          <span class="badge label">100% mexicana</span>
-          <span class="badge label">Dibujado a mano</span>
-          <span class="badge label">Hecho en CDMX</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="info dark" id="entregas">
     <div class="wrap">
       <div class="sec-head"><div><span class="label">Así te llega</span><h2>Entregas y pagos</h2></div></div>
@@ -460,6 +477,26 @@ footer .mk{color:var(--hueso);font-size:1.15rem}
           <span class="status gift label">De regalo</span>
           <h3>Stickers de Bruno</h3>
           <p>Tu playera llega en bolsa cerrada con stickers troquelados de Bruno para tu casco o tu bici.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story light" id="historia">
+    <div class="wrap">
+      <div>
+        <span class="label" style="color:var(--rosa)">Nuestra historia</span>
+        <h2>Cuatro hermanos y un cerro</h2>
+        <div class="txt">
+          <p>Llantas Lentas es una marca mexicana de deportes extremos. Arrancamos con el MTB Enduro y Downhill, grabando nuestras rodadas para compartirlas con la banda. La idea es <strong>progreso constante con buena vibra</strong>: todos empezamos lento, y lo que nos une en el cerro son las ganas de intentarlo.</p>
+          <p>Cada ilustración la dibujamos nosotros, sin IA, mezclando graffiti, retro ochentero y calle mexicana.</p>
+        </div>
+      </div>
+      <div class="story-side">
+        <div class="badges">
+          <span class="badge label">100% mexicana</span>
+          <span class="badge label">Dibujado a mano</span>
+          <span class="badge label">Hecho en CDMX</span>
         </div>
       </div>
     </div>
@@ -528,6 +565,13 @@ const PRODUCTOS = [
 ];
 /* Tarjeta de "próximo drop" al final de la tienda (pon false para quitarla) */
 const PROXIMAMENTE = true;
+/* Riders colaboradores: reemplaza los ejemplos con tus riders reales.
+   foto: "img/rider-nombre.webp"  ig: usuario sin @  ejemplo:true muestra la etiqueta "Ejemplo" */
+const RIDERS = [
+  {nombre:"Nombre del rider", ig:"usuario", disciplina:["Enduro","CDMX"], frase:"Lento hoy, a tope mañana.", foto:"img/rodada-2.webp", ejemplo:true},
+  {nombre:"Nombre del rider", ig:"usuario", disciplina:["Downhill","CDMX"], frase:"Puro flow de cerro.", foto:"img/rodada-3.webp", ejemplo:true}
+];
+
 /* ============================================== */
 
 const $ = s => document.querySelector(s);
@@ -573,6 +617,17 @@ function renderGrid(){
         <div class="row"><span class="price-wrap">${p.nota?`<span class="launch label">${p.nota}</span>`:""}<span class="price">${fmt(p.precio)} <small>MXN</small></span></span><span class="acts">${buy}<button type="button" class="add" data-add="${p.id}">Agregar</button></span></div>
       </div></article>`;
   }).join("") + (PROXIMAMENTE && filtro==="Todo" ? `<div class="soon-card"><span class="label">Próximo drop</span><h3>Ya estamos dibujando lo que sigue</h3><p>Al tiro en Instagram, compas: ahí avisamos primero.</p><a href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">@llantaslentas →</a></div>` : "");
+}
+function renderRiders(){
+  const cards = RIDERS.map(r=>`<article class="rider">
+      <div class="ph">${r.foto?`<img src="${r.foto}" alt="${r.nombre} rodando" loading="lazy">`:""}${r.ejemplo?`<span class="ex label">Ejemplo</span>`:""}</div>
+      <div class="bd">
+        <h3>${r.nombre}</h3>
+        ${r.ig?`<a class="ig" href="https://www.instagram.com/${r.ig}/" target="_blank" rel="noopener">@${r.ig}</a>`:""}
+        <div class="tags">${(r.disciplina||[]).map(d=>`<span class="label">${d}</span>`).join("")}</div>
+        ${r.frase?`<p class="quote">${r.frase}</p>`:""}
+      </div></article>`).join("");
+  $("#riderGrid").innerHTML = cards + `<div class="rider join"><span class="label" style="color:var(--rosa)">¿Rodamos juntos?</span><h3>Súmate a la crew</h3><p>¿Eres rider y te late la marca? Mándanos DM con tus videos, sin importar tu nivel.</p><a class="btn btn-rosa" href="https://www.instagram.com/llantaslentas/" target="_blank" rel="noopener">Mándanos DM</a></div>`;
 }
 function addToCart(id){
   const p = PRODUCTOS.find(x=>x.id===id);
@@ -631,7 +686,7 @@ $("#copyBtn").onclick = ()=>{
 $("#waShow").textContent = waPretty(TIENDA.whatsapp);
 $("#waNote").textContent = `Si WhatsApp no abre, copia el pedido y mándalo al ${waPretty(TIENDA.whatsapp)}.`;
 
-renderFilters(); renderGrid(); renderCart();
+renderFilters(); renderGrid(); renderRiders(); renderCart();
 </script>
 
 </body>
